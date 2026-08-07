@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Times New Roman", Times, "Liberation Serif", serif;
+  --font-body: "Times New Roman", Times, "Liberation Serif", serif;
+  --font-mono: "Times New Roman", Times, "Liberation Serif", serif;
+
+  --color-navy: #201D19;
+  --color-navy-light: #37322A;
+  --color-paper: #FBFAF7;
+  --color-pale: #F1EEE6;
+  --color-pale-dim: #E7E1D3;
+  --color-gold: #A9832B;
+  --color-gold-light: #C9A24E;
+  --color-charcoal: #2A2825;
+  --color-charcoal-soft: #5C574C;
+
+  --breakpoint-xs: 420px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-charcoal);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-paper);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+    letter-spacing: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-pale);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-navy-light);
+    border-radius: 0;
+    border: 2px solid var(--color-pale);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .text-justify-pretty {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: none;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    font-weight: 600;
+  }
+
+  .rule-thin {
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.15;
+  }
+
+  .container-institutional {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .container-institutional {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
