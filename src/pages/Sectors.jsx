@@ -2,15 +2,16 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import { sectors } from '../data/sectors'
+import { sectors, sectorsIntro } from '../data/sectors'
 
 export default function Sectors() {
   return (
     <div>
       <PageHero
-        eyebrow="Sectors"
-        title="Government, Corporate, Finance, Development, Health, Research and Industry."
-        description="Arvington works across sectors deliberately rather than by accident, because many of the problems worth solving, in energy, health or public finance, require exactly the multidisciplinary view a single-sector firm rarely has reason to build."
+        eyebrow={sectorsIntro.eyebrow}
+        title={sectorsIntro.title}
+        description={sectorsIntro.description}
+        tall
       />
 
       <section className="py-24 md:py-32">

@@ -21,6 +21,28 @@ const columns = [
   },
 ]
 
+const socialLinks = [
+  'LinkedIn',
+  'X (Twitter)',
+  'YouTube',
+  'Facebook',
+  'Instagram',
+  'TikTok',
+  'Threads',
+  'ResearchGate',
+  'Google Scholar',
+  'ORCID',
+  'GitHub',
+  'Medium',
+  'Substack',
+  'WhatsApp',
+  'Telegram',
+  'Vimeo',
+  'Kaggle',
+  'Academia.edu',
+  'Spotify',
+]
+
 export default function Footer() {
   return (
     <footer className="bg-pale/70 border-t-2 border-gold/50">
@@ -70,6 +92,22 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="py-10 border-b border-navy/10">
+          <p className="eyebrow text-navy/50 mb-5">Connect With Arvington</p>
+          <nav className="flex flex-wrap gap-x-5 gap-y-2.5" aria-label="Social media">
+            {socialLinks.map((label) => (
+              <a
+                key={label}
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="text-xs uppercase tracking-wide text-charcoal-soft/80 hover:text-gold transition-colors duration-200"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
         </div>
 
         <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">

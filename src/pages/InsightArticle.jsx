@@ -28,18 +28,44 @@ export default function InsightArticle() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-gold" />
-              <span className="eyebrow text-gold">{insight.series} &middot; {insight.number}</span>
+              <span className="eyebrow text-gold">Arvington Insights &middot; The Journal of Institutional Intelligence</span>
             </div>
+            {insight.publicationType && (
+              <p className="text-xs uppercase tracking-widest text-charcoal-soft/60 mb-4">{insight.publicationType}</p>
+            )}
             <h1 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl leading-[1.12] text-navy">
               {insight.title}
             </h1>
             <p className="mt-6 text-lg text-charcoal-soft leading-relaxed text-justify-pretty">{insight.dek}</p>
-            <div className="mt-8 flex items-center gap-4 text-xs eyebrow text-charcoal-soft/70">
+
+            {insight.author && (
+              <div className="mt-8 flex items-center gap-4">
+                <ImagePlaceholder label="Author" ratio="aspect-square" className="w-14 h-14 shrink-0" />
+                <div>
+                  <p className="text-navy font-medium">{insight.author}</p>
+                  <p className="text-xs text-charcoal-soft/70">{insight.authorRole}</p>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs eyebrow text-charcoal-soft/70">
               <span>{insight.category}</span>
               <span className="w-1 h-1 rounded-full bg-navy/20" />
               <span>{insight.date}</span>
               <span className="w-1 h-1 rounded-full bg-navy/20" />
               <span>{insight.readTime}</span>
+              {insight.volume && (
+                <>
+                  <span className="w-1 h-1 rounded-full bg-navy/20" />
+                  <span>Vol. {insight.volume}, Issue {insight.issue}</span>
+                </>
+              )}
+              {insight.vertical && (
+                <>
+                  <span className="w-1 h-1 rounded-full bg-navy/20" />
+                  <span>{insight.vertical}</span>
+                </>
+              )}
             </div>
           </motion.div>
         </div>

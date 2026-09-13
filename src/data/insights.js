@@ -17,6 +17,13 @@ export const insightCategories = [
 export const insights = [
   {
     id: 'decision-quality-institutions',
+    author: 'Seth Kipsang',
+    authorRole: 'Founder & Chief Executive Officer',
+    authorCategory: 'C-Suite',
+    vertical: 'Strategy, Leadership & Management',
+    publicationType: 'Executive Perspective',
+    volume: '01',
+    issue: '02',
     series: 'Arvington Executive Perspective',
     number: '01',
     category: 'Strategy',
@@ -34,6 +41,13 @@ export const insights = [
   },
   {
     id: 'ai-without-strategy',
+    author: 'Isaac Waluke',
+    authorRole: 'Director, Artificial Intelligence, Data Science & Digital Transformation',
+    authorCategory: 'Vertical Director',
+    vertical: 'Artificial Intelligence, Data Science & Digital Transformation',
+    publicationType: 'Executive Perspective',
+    volume: '01',
+    issue: '03',
     series: 'Arvington Executive Perspective',
     number: '02',
     category: 'Artificial Intelligence',
@@ -51,6 +65,13 @@ export const insights = [
   },
   {
     id: 'economics-of-climate-finance',
+    author: 'Samuel Kipsang Kaptum',
+    authorRole: 'Director, Economics, Finance & Policy',
+    authorCategory: 'Vertical Director',
+    vertical: 'Economics, Finance & Policy',
+    publicationType: 'Executive Perspective',
+    volume: '01',
+    issue: '04',
     series: 'Arvington Executive Perspective',
     number: '03',
     category: 'Economics',
@@ -68,6 +89,13 @@ export const insights = [
   },
   {
     id: 'governance-of-data',
+    author: 'Adv. Brian Mogaka',
+    authorRole: 'Chief Risk, Governance, Compliance & Legal Officer',
+    authorCategory: 'C-Suite',
+    vertical: 'Government, Governance & Smart Systems',
+    publicationType: 'Analytical Essay',
+    volume: '01',
+    issue: '01',
     series: 'Arvington Insight',
     number: '04',
     category: 'Governance',
@@ -83,6 +111,13 @@ export const insights = [
   },
   {
     id: 'research-rigour-under-pressure',
+    author: 'Rael Awuor',
+    authorRole: 'Director, Research, Statistics & Evaluation',
+    authorCategory: 'Vertical Director',
+    vertical: 'Research, Statistics & Evaluation',
+    publicationType: 'Analytical Essay',
+    volume: '01',
+    issue: '01',
     series: 'Arvington Insight',
     number: '05',
     category: 'Research',
@@ -98,6 +133,13 @@ export const insights = [
   },
   {
     id: 'building-technical-teams-in-public-sector',
+    author: 'Mogire Obwaya',
+    authorRole: 'Chief Technology, Intelligence & Digital Officer',
+    authorCategory: 'C-Suite',
+    vertical: 'Government, Governance & Smart Systems',
+    publicationType: 'Case Study',
+    volume: '01',
+    issue: '02',
     series: 'Arvington Insight',
     number: '06',
     category: 'Technology',
@@ -112,3 +154,97 @@ export const insights = [
     ],
   },
 ]
+
+export const journalIntro = {
+  eyebrow: 'ARVINGTON INSIGHTS',
+  strapline: 'The Journal of Institutional Intelligence',
+  tagline: 'Research. Analysis. Evidence. Institutional Judgement.',
+  description:
+    'Arvington Insights is the institutional journal of Arvington Ltd., publishing original research, analytical papers, technical studies, policy analysis, executive perspectives and interdisciplinary scholarship across the fields in which Arvington operates. The journal brings together the intellectual contributions of Arvington’s Board, C-Suite and twenty Vertical Directors, alongside invited researchers, academics and practitioners.',
+  closing: 'This is not Arvington marketing. This is Arvington’s intellectual record.',
+}
+
+export const publicationTypes = [
+  { name: 'Research Papers', description: 'Original empirical, theoretical or applied research.' },
+  { name: 'Technical Papers', description: 'Specialist methodological and technical analysis.' },
+  { name: 'Policy Papers', description: 'Evidence-based analysis of policy, regulation and institutional choices.' },
+  { name: 'Analytical Essays', description: 'Structured examination of consequential questions and emerging issues.' },
+  { name: 'Executive Perspectives', description: 'Senior leadership perspectives on strategy, institutions and decision-making.' },
+  { name: 'Case Studies', description: 'Detailed examination of institutional, organisational or sectoral challenges.' },
+  { name: 'Reviews', description: 'Critical reviews of research, technologies, policies, markets or emerging developments.' },
+  { name: 'Special Reports', description: 'Substantive multidisciplinary publications addressing major institutional questions.' },
+]
+
+export const editorialBoard = [
+  {
+    role: 'Editor-in-Chief',
+    description: 'Overall intellectual and editorial direction.',
+    name: 'Seth Kipsang',
+    position: 'Founder & Chief Executive Officer, Arvington Ltd',
+  },
+  {
+    role: 'Executive Editors',
+    description: 'Senior C-Suite leadership contributing to the journal’s strategic and interdisciplinary direction.',
+    name: 'The Arvington C-Suite',
+    position: 'Nine Executive Leadership Functions',
+  },
+  {
+    role: 'Section Editors',
+    description: 'The twenty Vertical Directors responsible for specialist publication domains.',
+    name: 'Consulting Vertical Directors',
+    position: 'Twenty Consulting Verticals',
+  },
+  {
+    role: 'Contributing Authors',
+    description: 'Arvington executives, consultants, researchers, academics, practitioners and invited experts.',
+    name: 'Arvington Institutional Community',
+    position: 'Board, C-Suite, Directors & Invited Contributors',
+  },
+]
+
+export const perspectives = [
+  {
+    id: 'board',
+    name: 'The Board',
+    strapline: 'Governance, Stewardship & Institutional Leadership',
+    description:
+      'Publications from Arvington’s Board addressing governance, institutional stewardship, strategy, risk, investment, resilience and long-term institutional value.',
+    to: '/leadership#board',
+  },
+  {
+    id: 'c-suite',
+    name: 'The C-Suite',
+    strapline: 'Executive Leadership & Institutional Performance',
+    description:
+      'Research and executive perspectives from Arvington’s C-Suite across strategy, operations, finance, technology, intelligence, research, risk, human capital, marketing and institutional development.',
+    to: '/leadership#c-suite',
+  },
+  {
+    id: 'directors',
+    name: 'The Vertical Directors',
+    strapline: 'Twenty Fields of Specialist Knowledge',
+    description:
+      'Research, technical papers, analytical essays and professional perspectives authored by the Directors responsible for Arvington’s twenty Consulting Verticals.',
+    to: '/leadership#directors',
+  },
+]
+
+export const volumesArchive = [
+  {
+    volume: 'Volume 01 — 2026',
+    issues: [
+      'Issue 01 — Institutional Intelligence',
+      'Issue 02 — Strategy & Transformation',
+      'Issue 03 — Technology & AI',
+      'Issue 04 — Economics, Finance & Policy',
+    ],
+  },
+]
+
+export const featuredResearch = {
+  type: 'Research Paper',
+  category: 'Artificial Intelligence, Strategy & Institutional Intelligence',
+  title: 'The Future of Institutional Decision-Making in an AI-Enabled Economy',
+  volumeLabel: 'Arvington Insights | Vol. 01, No. 01',
+  insightId: 'ai-without-strategy',
+}

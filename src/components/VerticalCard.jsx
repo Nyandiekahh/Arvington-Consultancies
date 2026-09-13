@@ -8,7 +8,8 @@ export default function VerticalCard({ vertical, index }) {
   return (
     <motion.div
       layout
-      className="border border-navy/12 bg-paper hover:border-navy/30 transition-colors duration-300"
+      id={`vertical-${vertical.id}`}
+      className="border border-navy/12 bg-paper hover:border-navy/30 transition-colors duration-300 scroll-mt-28"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -48,6 +49,12 @@ export default function VerticalCard({ vertical, index }) {
       >
         <div className="px-6 md:px-8 pb-8 pl-[3.75rem] md:pl-[4.25rem]">
           <p className="text-charcoal leading-relaxed text-justify-pretty mb-7">{vertical.summary}</p>
+
+          {vertical.directorQuote && (
+            <blockquote className="border-l-2 border-gold pl-5 mb-8 italic text-charcoal-soft leading-relaxed text-justify-pretty">
+              &ldquo;{vertical.directorQuote}&rdquo;
+            </blockquote>
+          )}
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
@@ -90,9 +97,28 @@ export default function VerticalCard({ vertical, index }) {
               <>
                 <ImagePlaceholder label="Director Photo" ratio="aspect-square" className="w-24 h-24 shrink-0" />
                 <div className="flex-1">
-                  <p className="font-display text-lg text-navy mb-0.5">{vertical.directorName}</p>
-                  <p className="eyebrow text-charcoal-soft mb-3 tracking-normal normal-case font-normal">{vertical.director}</p>
-                  <p className="text-sm text-charcoal-soft/70 italic">A statement from {vertical.directorName.split(' ')[0]} will be added here.</p>
+                  <p className="font-display text-lg text-navy mb-0.5">
+                    {vertical.directorName}
+                    {vertical.directorCredentials ? `, ${vertical.directorCredentials}` : ''}
+                  </p>
+                  <p className="eyebrow text-charcoal-soft mb-1 tracking-normal normal-case font-normal">{vertical.director}</p>
+                  {vertical.directorTagline && (
+                    <p className="text-xs text-gold/90 eyebrow tracking-normal normal-case font-medium mb-3">
+                      {vertical.directorTagline}
+                    </p>
+                  )}
+                  {vertical.directorMantra && (
+                    <p className="text-sm text-charcoal-soft italic mb-4">{vertical.directorMantra}</p>
+                  )}
+                  {vertical.directorBio && vertical.directorBio.length > 0 && (
+                    <div className="flex flex-col gap-4">
+                      {vertical.directorBio.map((para, i) => (
+                        <p key={i} className="text-sm text-charcoal-soft leading-relaxed text-justify-pretty">
+                          {para}
+                        </p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </>
             ) : (
