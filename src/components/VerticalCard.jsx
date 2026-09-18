@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ImagePlaceholder from './ImagePlaceholder'
+import { personPhoto } from '../utils/media'
 
 export default function VerticalCard({ vertical, index }) {
   const [expanded, setExpanded] = useState(false)
@@ -95,7 +96,7 @@ export default function VerticalCard({ vertical, index }) {
           <div className="border-t border-navy/8 pt-7 flex flex-col sm:flex-row gap-6">
             {vertical.directorName ? (
               <>
-                <ImagePlaceholder label="Director Photo" ratio="aspect-square" className="w-24 h-24 shrink-0" />
+                <ImagePlaceholder label="Director Photo" ratio="aspect-square" className="w-24 h-24 shrink-0" src={personPhoto(vertical.directorName)} alt={vertical.directorName} />
                 <div className="flex-1">
                   <p className="font-display text-lg text-navy mb-0.5">
                     {vertical.directorName}
@@ -118,6 +119,16 @@ export default function VerticalCard({ vertical, index }) {
                         </p>
                       ))}
                     </div>
+                  )}
+                  {vertical.directorPortfolio && (
+                    <a
+                      href={vertical.directorPortfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-4 text-xs uppercase tracking-wide font-medium text-navy border-b border-navy/30 hover:border-gold hover:text-gold transition-colors duration-300 w-fit"
+                    >
+                      View Full Portfolio <span aria-hidden="true">&rarr;</span>
+                    </a>
                   )}
                 </div>
               </>

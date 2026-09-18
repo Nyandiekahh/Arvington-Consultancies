@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import { personPhoto } from '../utils/media'
 import { board, boardMandate, cSuite, cSuiteMandate } from '../data/leadership'
 import { verticals } from '../data/verticals'
 
@@ -14,7 +15,7 @@ function ExecCard({ exec, index }) {
     <Reveal direction="up" delay={(index % 3) * 0.07}>
       <div className="border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300">
         <button onClick={() => setExpanded((e) => !e)} className="w-full text-left p-7" aria-expanded={expanded}>
-          <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" />
+          <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(exec.name)} alt={exec.name} />
           <span className="font-mono text-xs text-gold">{exec.code}</span>
           <h3 className="font-display text-lg text-navy mt-2 mb-0.5">
             {exec.name}
@@ -72,7 +73,7 @@ export default function Leadership() {
             {board.map((member, i) => (
               <Reveal key={member.name + i} direction="up" delay={(i % 2) * 0.08}>
                 <div className="flex gap-6 p-7 h-full border border-navy/10">
-                  <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-28 h-28 shrink-0" />
+                  <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-28 h-28 shrink-0" src={personPhoto(member.name)} alt={member.name} />
                   <div>
                     <h3 className="font-display text-lg text-navy">
                       {member.name}
@@ -135,6 +136,8 @@ export default function Leadership() {
                     label={v.directorName ? 'Photo' : 'Vacant'}
                     ratio="aspect-square"
                     className={`w-20 h-20 shrink-0 ${v.directorName ? '' : 'opacity-60'}`}
+                    src={personPhoto(v.directorName)}
+                    alt={v.directorName}
                   />
                   <div>
                     <span className="font-mono text-xs text-gold">{String(v.id).padStart(2, '0')}</span>

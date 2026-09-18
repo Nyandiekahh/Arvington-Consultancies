@@ -47,7 +47,7 @@ export default function About() {
             </div>
           </Reveal>
           <Reveal direction="left" delay={0.1}>
-            <ImagePlaceholder label="Institutional Purpose" ratio="aspect-[4/5]" />
+            <ImagePlaceholder label="Institutional Purpose" ratio="aspect-[4/5]" src="/images/site/about-purpose.jpg" alt="Institutional Purpose" />
           </Reveal>
         </div>
       </section>

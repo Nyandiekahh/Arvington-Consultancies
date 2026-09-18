@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import { personPhoto } from '../utils/media'
 import InsightCard from '../components/InsightCard'
 import { insights } from '../data/insights'
 
@@ -40,7 +41,7 @@ export default function InsightArticle() {
 
             {insight.author && (
               <div className="mt-8 flex items-center gap-4">
-                <ImagePlaceholder label="Author" ratio="aspect-square" className="w-14 h-14 shrink-0" />
+                <ImagePlaceholder label="Author" ratio="aspect-square" className="w-14 h-14 shrink-0" src={personPhoto(insight.author)} alt={insight.author} />
                 <div>
                   <p className="text-navy font-medium">{insight.author}</p>
                   <p className="text-xs text-charcoal-soft/70">{insight.authorRole}</p>
@@ -72,7 +73,7 @@ export default function InsightArticle() {
       </header>
 
       <div className="container-institutional max-w-3xl py-20">
-        <ImagePlaceholder label={insight.category} ratio="aspect-[16/9]" className="mb-14" />
+        <ImagePlaceholder label={insight.category} ratio="aspect-[16/9]" className="mb-14" src={`/images/insights/${insight.id}.jpg`} alt={insight.title} />
 
         <div className="prose-arvington">
           {insight.body.map((para, i) => (

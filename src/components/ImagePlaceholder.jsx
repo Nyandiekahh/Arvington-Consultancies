@@ -1,4 +1,22 @@
-export default function ImagePlaceholder({ label = 'Image', ratio = 'aspect-[4/3]', className = '' }) {
+import { useState } from 'react'
+
+export default function ImagePlaceholder({ label = 'Image', ratio = 'aspect-[4/3]', className = '', src, alt }) {
+  const [errored, setErrored] = useState(false)
+
+  if (src && !errored) {
+    return (
+      <div className={`relative ${ratio} bg-pale border border-navy/10 overflow-hidden ${className}`}>
+        <img
+          src={src}
+          alt={alt || label}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={() => setErrored(true)}
+        />
+      </div>
+    )
+  }
+
   return (
     <div
       className={`relative ${ratio} bg-pale border border-navy/10 overflow-hidden flex items-center justify-center group ${className}`}

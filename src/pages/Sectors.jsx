@@ -41,7 +41,7 @@ export default function Sectors() {
                 </Link>
               </Reveal>
               <Reveal direction={i % 2 === 0 ? 'left' : 'right'} delay={0.1}>
-                <ImagePlaceholder label={sector.name} ratio="aspect-[4/3]" />
+                <ImagePlaceholder label={sector.name} ratio="aspect-[4/3]" src={`/images/sectors/${sector.id}.jpg`} alt={sector.name} />
               </Reveal>
             </div>
           ))}

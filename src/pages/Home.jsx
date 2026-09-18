@@ -7,6 +7,7 @@ import PipelineDiagram from '../components/PipelineDiagram'
 import StatCounter from '../components/StatCounter'
 import InsightCard from '../components/InsightCard'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import { personPhoto } from '../utils/media'
 import { capabilities, industries, pillars } from '../data/capabilities'
 import { insights } from '../data/insights'
 import { tiers, verticals } from '../data/verticals'
@@ -259,7 +260,7 @@ export default function Home() {
       <section className="py-28 md:py-36">
         <div className="container-institutional grid lg:grid-cols-2 gap-14 items-center">
           <Reveal direction="right">
-            <ImagePlaceholder label="Selected Engagement" ratio="aspect-[4/3]" />
+            <ImagePlaceholder label="Selected Engagement" ratio="aspect-[4/3]" src="/images/site/selected-engagement.jpg" alt="Selected Engagement" />
           </Reveal>
           <Reveal direction="left">
             <span className="eyebrow text-gold">Selected Engagement</span>
@@ -307,7 +308,7 @@ export default function Home() {
                   <span className="font-display text-4xl text-gold/60 leading-none mb-4">&ldquo;</span>
                   <p className="text-charcoal leading-relaxed text-justify-pretty flex-1 mb-8">{t.quote}</p>
                   <div className="flex items-center gap-4 pt-6 border-t border-navy/8">
-                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-14 h-14 shrink-0" />
+                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-14 h-14 shrink-0" src={personPhoto(t.name)} alt={t.name} />
                     <div>
                       <p className="font-display text-base text-navy leading-tight">{t.name}</p>
                       <p className="text-xs text-charcoal-soft mt-1">{t.role}</p>

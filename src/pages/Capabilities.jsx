@@ -39,7 +39,7 @@ export default function Capabilities() {
                 </Link>
               </Reveal>
               <Reveal direction={i % 2 === 0 ? 'left' : 'right'} delay={0.1}>
-                <ImagePlaceholder label={cap.name} ratio="aspect-[4/3]" />
+                <ImagePlaceholder label={cap.name} ratio="aspect-[4/3]" src={`/images/capabilities/${cap.id}.jpg`} alt={cap.name} />
               </Reveal>
             </div>
           ))}

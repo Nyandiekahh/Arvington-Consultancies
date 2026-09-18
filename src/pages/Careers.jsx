@@ -52,7 +52,7 @@ export default function Careers() {
       <section className="py-24 md:py-32">
         <div className="container-institutional grid lg:grid-cols-2 gap-16 items-center">
           <Reveal direction="right">
-            <ImagePlaceholder label="Life at Arvington" ratio="aspect-[4/3]" />
+            <ImagePlaceholder label="Life at Arvington" ratio="aspect-[4/3]" src="/images/site/careers-life.jpg" alt="Life at Arvington" />
           </Reveal>
           <Reveal direction="left" delay={0.1}>
             <SectionHeading

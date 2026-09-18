@@ -373,12 +373,14 @@ export const verticals = [
     director: 'Director, Engineering, Manufacturing & Innovation',
     directorName: 'Einstein Nyandieka Mokua',
     directorCredentials: 'BEng',
+    directorPortfolio: 'https://nyandieka.vercel.app',
     directorTagline: 'Mechatronics Engineer | Systems Engineer | Software Developer | Technology Innovator',
     directorMantra: 'Engineering intelligent systems and strengthening industrial capability through technology and innovation.',
     directorBio: [
       `Director of Engineering, Manufacturing & Innovation at Arvington Ltd, providing leadership across engineering strategy, manufacturing systems, process optimisation, product development, technology innovation, technoeconomic assessment and industrial capability development.`,
       `Einstein is a Mechatronics Engineer and Software Developer with multidisciplinary expertise spanning control engineering, robotics, embedded systems, industrial automation, mechanical design, software engineering, artificial intelligence and manufacturing technologies. He combines engineering and digital capabilities to design, develop and integrate intelligent technical systems.`,
       `He holds a Bachelors in Mechatronics Engineering from JKUAT and a Certificate in Computer Software Engineering, Certificate in Cyber Security from Moringa School, complemented by practical exposure at Kenya Power and Lighting Company (KPLC) and Communications Authority of Kenya (CAK), across manufacturing, engineering maintenance, telecommunications regulation and technical systems.`,
+      `Alongside his engineering practice, Einstein is the founder of Beyond Gravity Solutions, through which he delivers full-stack web platforms, spanning React front-ends and Django REST Framework back-ends, for enterprise, industrial and institutional clients. This freelance and entrepreneurial practice, including this website, keeps his engineering leadership grounded in applied, production-level software delivery. A fuller record of his technical work is maintained at his personal portfolio.`,
       `His leadership is grounded in systems engineering, automation, technological integration and applied innovation, connecting engineering, software and manufacturing capabilities to strengthen industrial performance, enable technology adoption and develop scalable solutions.`,
     ],
     directorQuote:

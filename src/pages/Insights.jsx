@@ -88,7 +88,7 @@ export default function Insights() {
               </Link>
             </Reveal>
             <Reveal direction="left" delay={0.1}>
-              <ImagePlaceholder label="Featured Research" ratio="aspect-[16/10]" className="!bg-paper/5 !border-paper/15" />
+              <ImagePlaceholder label="Featured Research" ratio="aspect-[16/10]" className="!bg-paper/5 !border-paper/15" src={`/images/insights/${featuredResearch.insightId}.jpg`} alt={featuredResearch.title} />
             </Reveal>
           </div>
         </section>

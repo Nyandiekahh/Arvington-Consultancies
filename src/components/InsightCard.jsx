@@ -14,7 +14,7 @@ export default function InsightCard({ insight, index = 0, featured = false }) {
       <Link to={`/insights/${insight.id}`} className="block">
         <div className="overflow-hidden">
           <div className="transition-transform duration-700 group-hover:scale-[1.03]">
-            <ImagePlaceholder label={insight.category} ratio={featured ? 'aspect-[16/8]' : 'aspect-[16/10]'} />
+            <ImagePlaceholder label={insight.category} ratio={featured ? 'aspect-[16/8]' : 'aspect-[16/10]'} src={`/images/insights/${insight.id}.jpg`} alt={insight.title} />
           </div>
         </div>
         <div className="pt-6">
