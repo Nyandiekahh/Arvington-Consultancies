@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import useSEO from '../hooks/useSEO'
 
 const openings = [
   { title: 'Consultant — Artificial Intelligence & Data Science', location: 'Nairobi', type: 'Full Time' },
@@ -40,6 +41,11 @@ const values = [
 ]
 
 export default function Careers() {
+  useSEO({
+    title: 'Careers',
+    description: 'Build a career at Arvington Ltd., a multidisciplinary consulting, analytics and strategic advisory institution.',
+    path: '/careers',
+  })
   return (
     <div>
       <PageHero

@@ -1,19 +1,46 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import { personPhoto } from '../utils/media'
+import useSEO from '../hooks/useSEO'
+import { personPhoto, slugify } from '../utils/media'
 import { board, boardMandate, cSuite, cSuiteMandate } from '../data/leadership'
 import { verticals } from '../data/verticals'
 
+function SealBanner({ image, eyebrow, title, description, strapline }) {
+  return (
+    <div className="relative overflow-hidden bg-[#0b0b09] py-20 md:py-28">
+      <div
+        className="absolute inset-0 bg-no-repeat opacity-95"
+        style={{ backgroundImage: `url(${image})`, backgroundPosition: 'right center', backgroundSize: 'contain' }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b09] via-[#0b0b09]/85 to-[#0b0b09]/20" />
+      <div className="container-institutional relative">
+        <SectionHeading eyebrow={eyebrow} title={title} description={description} light />
+        {strapline && <p className="mt-6 eyebrow text-gold/80">{strapline}</p>}
+      </div>
+    </div>
+  )
+}
+
 function ExecCard({ exec, index }) {
   const [expanded, setExpanded] = useState(false)
+  const location = useLocation()
+  const anchorId = `csuite-${slugify(exec.name)}`
+
+  useEffect(() => {
+    if (location.hash === `#${anchorId}`) {
+      setExpanded(true)
+    }
+  }, [location.hash, anchorId])
+
   return (
     <Reveal direction="up" delay={(index % 3) * 0.07}>
-      <div className="border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300">
+      <div id={anchorId} className="border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28">
         <button onClick={() => setExpanded((e) => !e)} className="w-full text-left p-7" aria-expanded={expanded}>
           <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(exec.name)} alt={exec.name} />
           <span className="font-mono text-xs text-gold">{exec.code}</span>
@@ -50,6 +77,13 @@ function ExecCard({ exec, index }) {
 }
 
 export default function Leadership() {
+  useSEO({
+    title: 'Leadership',
+    description:
+      'The Arvington Board of Directors, C-Suite executive leadership and the Directors of our twenty Consulting Verticals.',
+    path: '/leadership',
+  })
+
   return (
     <div>
       <PageHero
@@ -59,98 +93,103 @@ export default function Leadership() {
         tall
       />
 
-      <section id="board" className="py-24 md:py-28 scroll-mt-24">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow={boardMandate.eyebrow}
-            title={boardMandate.title}
-            description={boardMandate.intro}
-          />
-          <Reveal direction="up" delay={0.1}>
-            <p className="mt-6 eyebrow text-gold/80">{boardMandate.strapline}</p>
-          </Reveal>
-          <div className="mt-16 grid sm:grid-cols-2 gap-8">
-            {board.map((member, i) => (
-              <Reveal key={member.name + i} direction="up" delay={(i % 2) * 0.08}>
-                <div className="flex gap-6 p-7 h-full border border-navy/10">
-                  <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-28 h-28 shrink-0" src={personPhoto(member.name)} alt={member.name} />
-                  <div>
-                    <h3 className="font-display text-lg text-navy">
-                      {member.name}
-                      {member.credentials ? `, ${member.credentials}` : ''}
-                    </h3>
-                    <p className="eyebrow text-gold mt-1 mb-1 tracking-normal normal-case font-normal text-charcoal-soft">
-                      {member.role}
-                    </p>
-                    {member.portfolio && (
-                      <p className="text-sm text-charcoal-soft mb-2">{member.portfolio}</p>
-                    )}
-                    {member.affiliation && (
-                      <p className="text-xs text-charcoal-soft/80 leading-relaxed">{member.affiliation}</p>
-                    )}
+      <section id="board" className="scroll-mt-24">
+        <SealBanner
+          image="/images/leadership/board-seal.webp"
+          eyebrow={boardMandate.eyebrow}
+          title={boardMandate.title}
+          description={boardMandate.intro}
+          strapline={boardMandate.strapline}
+        />
+        <div className="py-24 md:py-28">
+          <div className="container-institutional">
+            <div className="grid sm:grid-cols-2 gap-8">
+              {board.map((member, i) => (
+                <Reveal key={member.name + i} direction="up" delay={(i % 2) * 0.08}>
+                  <div id={`board-${slugify(member.name)}`} className="flex gap-6 p-7 h-full border border-navy/10 scroll-mt-28">
+                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-28 h-28 shrink-0" src={personPhoto(member.name)} alt={member.name} />
+                    <div>
+                      <h3 className="font-display text-lg text-navy">
+                        {member.name}
+                        {member.credentials ? `, ${member.credentials}` : ''}
+                      </h3>
+                      <p className="eyebrow text-gold mt-1 mb-1 tracking-normal normal-case font-normal text-charcoal-soft">
+                        {member.role}
+                      </p>
+                      {member.portfolio && (
+                        <p className="text-sm text-charcoal-soft mb-2">{member.portfolio}</p>
+                      )}
+                      {member.affiliation && (
+                        <p className="text-xs text-charcoal-soft/80 leading-relaxed">{member.affiliation}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="c-suite" className="py-24 md:py-28 bg-pale/60 border-y border-navy/8 scroll-mt-24">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow={cSuiteMandate.eyebrow}
-            title={cSuiteMandate.title}
-            description={cSuiteMandate.intro}
-          />
-          <Reveal direction="up" delay={0.1}>
-            <p className="mt-6 eyebrow text-gold/80">{cSuiteMandate.strapline}</p>
-          </Reveal>
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cSuite.map((exec, i) => (
-              <ExecCard key={exec.code} exec={exec} index={i} />
-            ))}
+      <section id="c-suite" className="scroll-mt-24">
+        <SealBanner
+          image="/images/leadership/csuite-seal.webp"
+          eyebrow={cSuiteMandate.eyebrow}
+          title={cSuiteMandate.title}
+          description={cSuiteMandate.intro}
+          strapline={cSuiteMandate.strapline}
+        />
+        <div className="py-24 md:py-28 bg-pale/60 border-b border-navy/8">
+          <div className="container-institutional">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cSuite.map((exec, i) => (
+                <ExecCard key={exec.code} exec={exec} index={i} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="directors" className="py-24 md:py-28 scroll-mt-24">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="Consulting Leadership"
-            title="Directors of the Twenty Consulting Verticals."
-            description="Each vertical is led by a director responsible for the professional standards, technical quality and staffing of that specialist practice. Several verticals are being progressively activated and do not yet have a director in place. Select a director to read their full profile on the Consulting Verticals page."
-          />
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {verticals.map((v, i) => (
-              <Reveal key={v.id} direction="up" delay={(i % 6) * 0.04}>
-                <Link
-                  to={`/consulting-verticals#vertical-${v.id}`}
-                  className={`block p-6 h-full flex gap-5 transition-colors duration-300 ${
-                    v.directorName
-                      ? 'border border-navy/10 bg-paper hover:border-gold/60'
-                      : 'border border-dashed border-navy/15 bg-paper/60'
-                  }`}
-                >
-                  <ImagePlaceholder
-                    label={v.directorName ? 'Photo' : 'Vacant'}
-                    ratio="aspect-square"
-                    className={`w-20 h-20 shrink-0 ${v.directorName ? '' : 'opacity-60'}`}
-                    src={personPhoto(v.directorName)}
-                    alt={v.directorName}
-                  />
-                  <div>
-                    <span className="font-mono text-xs text-gold">{String(v.id).padStart(2, '0')}</span>
-                    <h3 className={`font-display text-base mt-1 mb-0.5 leading-snug ${v.directorName ? 'text-navy' : 'text-navy/50'}`}>
-                      {v.directorName ? `${v.directorName}${v.directorCredentials ? `, ${v.directorCredentials}` : ''}` : 'To Be Appointed'}
-                    </h3>
-                    <p className="text-xs text-charcoal-soft eyebrow tracking-normal normal-case font-normal">
-                      {v.director}
-                    </p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+      <section id="directors" className="scroll-mt-24">
+        <SealBanner
+          image="/images/leadership/directorate-seal.webp"
+          eyebrow="Consulting Leadership"
+          title="Directors of the Twenty Consulting Verticals."
+          description="Each vertical is led by a director responsible for the professional standards, technical quality and staffing of that specialist practice. Several verticals are being progressively activated and do not yet have a director in place. Select a director to read their full profile on the Consulting Verticals page."
+        />
+        <div className="py-24 md:py-28">
+          <div className="container-institutional">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {verticals.map((v, i) => (
+                <Reveal key={v.id} direction="up" delay={(i % 6) * 0.04}>
+                  <Link
+                    to={`/consulting-verticals#vertical-${v.id}`}
+                    className={`block p-6 h-full flex gap-5 transition-colors duration-300 ${
+                      v.directorName
+                        ? 'border border-navy/10 bg-paper hover:border-gold/60'
+                        : 'border border-dashed border-navy/15 bg-paper/60'
+                    }`}
+                  >
+                    <ImagePlaceholder
+                      label={v.directorName ? 'Photo' : 'Vacant'}
+                      ratio="aspect-square"
+                      className={`w-20 h-20 shrink-0 ${v.directorName ? '' : 'opacity-60'}`}
+                      src={personPhoto(v.directorName)}
+                      alt={v.directorName}
+                    />
+                    <div>
+                      <span className="font-mono text-xs text-gold">{String(v.id).padStart(2, '0')}</span>
+                      <h3 className={`font-display text-base mt-1 mb-0.5 leading-snug ${v.directorName ? 'text-navy' : 'text-navy/50'}`}>
+                        {v.directorName ? `${v.directorName}${v.directorCredentials ? `, ${v.directorCredentials}` : ''}` : 'To Be Appointed'}
+                      </h3>
+                      <p className="text-xs text-charcoal-soft eyebrow tracking-normal normal-case font-normal">
+                        {v.director}
+                      </p>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>

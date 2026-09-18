@@ -1,67 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const NAV_ITEMS = [
-  {
-    label: 'About',
-    to: '/about',
-    children: [
-      { label: 'Our Purpose', to: '/about#purpose' },
-      { label: 'Institutional Philosophy', to: '/about#philosophy' },
-      { label: 'Decision Intelligence', to: '/about#decision-intelligence' },
-      { label: 'Our Approach', to: '/about#approach' },
-    ],
-  },
-  {
-    label: 'Capabilities',
-    to: '/capabilities',
-    children: [
-      { label: 'Strategy', to: '/capabilities#strategy' },
-      { label: 'Analytics & AI', to: '/capabilities#ai-data' },
-      { label: 'Economics & Finance', to: '/capabilities#economics-finance' },
-      { label: 'Research', to: '/capabilities#research' },
-      { label: 'Technology', to: '/capabilities#technology' },
-      { label: 'Institutional Advisory', to: '/capabilities#institutional-advisory' },
-    ],
-  },
-  {
-    label: 'Consulting Verticals',
-    to: '/consulting-verticals',
-    children: [
-      { label: 'Tier I — Core Business', to: '/consulting-verticals#tier-1' },
-      { label: 'Tier II — Specialist', to: '/consulting-verticals#tier-2' },
-      { label: 'Tier III — Future Activation', to: '/consulting-verticals#tier-3' },
-    ],
-  },
-  {
-    label: 'Leadership',
-    to: '/leadership',
-    children: [
-      { label: 'Board', to: '/leadership#board' },
-      { label: 'C-Suite', to: '/leadership#c-suite' },
-      { label: 'Consulting Directors', to: '/leadership#directors' },
-    ],
-  },
-  {
-    label: 'Insights',
-    to: '/insights',
-    children: [
-      { label: 'Latest Publications', to: '/insights#latest' },
-      { label: 'Three Perspectives', to: '/insights#perspectives' },
-      { label: 'Twenty Fields', to: '/insights#verticals-index' },
-      { label: 'Editorial Board', to: '/insights#editorial-board' },
-      { label: 'Volumes & Issues', to: '/insights#archive' },
-    ],
-  },
-  { label: 'Sectors', to: '/sectors' },
-  { label: 'Careers', to: '/careers' },
-]
+import { NAV_ITEMS } from '../data/navigation'
+import SearchOverlay from './SearchOverlay'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [openMenu, setOpenMenu] = useState(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -75,6 +22,19 @@ export default function Navbar() {
     setOpenMenu(null)
   }, [location.pathname])
 
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || e.key === '/') {
+        const tag = document.activeElement?.tagName
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return
+        e.preventDefault()
+        setSearchOpen(true)
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -82,7 +42,14 @@ export default function Navbar() {
       }`}
     >
       <div className="container-institutional flex items-center justify-between h-20 lg:h-24">
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <img
+            src="/images/brand/arvington-mark.png"
+            alt="Arvington"
+            width={40}
+            height={40}
+            className="h-8 w-8 md:h-10 md:w-10 object-contain"
+          />
           <span className="font-display text-xl md:text-2xl tracking-wide text-navy">
             ARVINGTON<span className="text-gold">.</span>
           </span>
@@ -143,7 +110,18 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-3">
+          <button
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search the site"
+            title="Search (Ctrl+K)"
+            className="p-2.5 text-navy/70 hover:text-navy border border-transparent hover:border-navy/15 transition-colors duration-200"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </button>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 border border-navy px-6 py-2.5 text-[0.78rem] font-medium uppercase tracking-wide text-navy hover:bg-navy hover:text-paper transition-colors duration-300"
@@ -153,16 +131,28 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          className="lg:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMobileOpen((o) => !o)}
-          aria-label="Toggle navigation menu"
-          aria-expanded={mobileOpen}
-        >
-          <span className={`block w-7 h-px bg-navy transition-transform duration-300 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-          <span className={`block w-7 h-px bg-navy transition-opacity duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-          <span className={`block w-7 h-px bg-navy transition-transform duration-300 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
-        </button>
+        <div className="lg:hidden flex items-center gap-1">
+          <button
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search the site"
+            className="p-2.5 text-navy/70 hover:text-navy transition-colors duration-200"
+          >
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button
+            className="flex flex-col gap-1.5 p-2"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileOpen}
+          >
+            <span className={`block w-7 h-px bg-navy transition-transform duration-300 ${mobileOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
+            <span className={`block w-7 h-px bg-navy transition-opacity duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-7 h-px bg-navy transition-transform duration-300 ${mobileOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -201,6 +191,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   )
 }

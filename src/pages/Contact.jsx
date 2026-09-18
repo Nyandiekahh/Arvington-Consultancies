@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import { verticals } from '../data/verticals'
+import useSEO from '../hooks/useSEO'
 
 const projectStages = [
   'Early Idea / Concept',
@@ -79,6 +80,11 @@ const initialForm = {
 }
 
 export default function Contact() {
+  useSEO({
+    title: 'Contact',
+    description: 'Discuss an engagement with Arvington Ltd. Reach our team to explore strategy, analytics, economics, research, technology or institutional advisory support.',
+    path: '/contact',
+  })
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState(initialForm)

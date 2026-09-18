@@ -3,8 +3,14 @@ import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { sectors, sectorsIntro } from '../data/sectors'
+import useSEO from '../hooks/useSEO'
 
 export default function Sectors() {
+  useSEO({
+    title: 'Sectors',
+    description: 'Government & Public Sector, Financial Services, Health & Life Sciences, Development & Humanitarian, Energy & Infrastructure and Academia & Research.',
+    path: '/sectors',
+  })
   return (
     <div>
       <PageHero
@@ -19,7 +25,8 @@ export default function Sectors() {
           {sectors.map((sector, i) => (
             <div
               key={sector.id}
-              className={`grid lg:grid-cols-2 gap-14 items-center ${i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}
+              id={sector.id}
+              className={`grid lg:grid-cols-2 gap-14 items-center scroll-mt-28 ${i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}
             >
               <Reveal direction={i % 2 === 0 ? 'right' : 'left'}>
                 <span className="font-mono text-xs text-gold">{String(i + 1).padStart(2, '0')} / {String(sectors.length).padStart(2, '0')}</span>

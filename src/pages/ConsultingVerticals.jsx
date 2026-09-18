@@ -2,8 +2,14 @@ import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
 import VerticalCard from '../components/VerticalCard'
 import { tiers, verticals } from '../data/verticals'
+import useSEO from '../hooks/useSEO'
 
 export default function ConsultingVerticals() {
+  useSEO({
+    title: 'Consulting Verticals',
+    description: 'Twenty consulting verticals organised across three strategic tiers, each led by a director responsible for capabilities, quality and delivery.',
+    path: '/consulting-verticals',
+  })
   return (
     <div>
       <PageHero

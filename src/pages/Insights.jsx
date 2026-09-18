@@ -16,8 +16,14 @@ import {
   volumesArchive,
   featuredResearch,
 } from '../data/insights'
+import useSEO from '../hooks/useSEO'
 
 export default function Insights() {
+  useSEO({
+    title: 'Insights',
+    description: 'Arvington Insights: the institutional journal publishing research, analytical papers, executive perspectives and interdisciplinary scholarship.',
+    path: '/insights',
+  })
   const [activeCategory, setActiveCategory] = useState('All')
 
   const filtered = useMemo(() => {

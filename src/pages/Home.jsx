@@ -12,8 +12,10 @@ import { capabilities, industries, pillars } from '../data/capabilities'
 import { insights } from '../data/insights'
 import { tiers, verticals } from '../data/verticals'
 import { testimonials } from '../data/testimonials'
+import useSEO from '../hooks/useSEO'
 
 export default function Home() {
+  useSEO({ path: '/' })
   return (
     <div>
       {/* HERO */}

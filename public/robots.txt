@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arvington-consultancies.vercel.app/sitemap.xml

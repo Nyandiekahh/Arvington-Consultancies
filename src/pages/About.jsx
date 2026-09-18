@@ -4,8 +4,14 @@ import Reveal from '../components/Reveal'
 import PipelineDiagram from '../components/PipelineDiagram'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { pillars } from '../data/capabilities'
+import useSEO from '../hooks/useSEO'
 
 export default function About() {
+  useSEO({
+    title: 'About',
+    description: 'Arvington\u2019s institutional purpose, philosophy, decision intelligence approach and the five principles that govern our work.',
+    path: '/about',
+  })
   return (
     <div>
       <PageHero

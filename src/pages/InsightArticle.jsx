@@ -4,11 +4,18 @@ import ImagePlaceholder from '../components/ImagePlaceholder'
 import { personPhoto } from '../utils/media'
 import InsightCard from '../components/InsightCard'
 import { insights } from '../data/insights'
+import useSEO from '../hooks/useSEO'
 
 export default function InsightArticle() {
   const { id } = useParams()
   const insight = insights.find((i) => i.id === id)
   const related = insights.filter((i) => i.id !== id).slice(0, 3)
+  useSEO({
+    title: insight ? insight.title : 'Article Not Found',
+    description: insight ? insight.dek : 'This piece may have been moved or is no longer published.',
+    path: `/insights/${id}`,
+    type: 'article',
+  })
 
   if (!insight) {
     return (

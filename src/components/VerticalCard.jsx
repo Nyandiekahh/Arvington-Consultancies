@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ImagePlaceholder from './ImagePlaceholder'
 import { personPhoto } from '../utils/media'
 
 export default function VerticalCard({ vertical, index }) {
   const [expanded, setExpanded] = useState(false)
+  const location = useLocation()
+  const anchorId = `vertical-${vertical.id}`
+
+  // Arriving here via a direct link or a search result (e.g. #vertical-3)
+  // should open the full profile immediately, not just scroll to a
+  // collapsed card the visitor then has to click open themselves.
+  useEffect(() => {
+    if (location.hash === `#${anchorId}`) {
+      setExpanded(true)
+    }
+  }, [location.hash, anchorId])
 
   return (
     <motion.div
       layout
-      id={`vertical-${vertical.id}`}
+      id={anchorId}
       className="border border-navy/12 bg-paper hover:border-navy/30 transition-colors duration-300 scroll-mt-28"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://arvington-consultancies.vercel.app/</loc><priority>1.0</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/about</loc><priority>0.8</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/capabilities</loc><priority>0.8</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/consulting-verticals</loc><priority>0.8</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/leadership</loc><priority>0.8</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/sectors</loc><priority>0.7</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights</loc><priority>0.8</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights/decision-quality-institutions</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights/ai-without-strategy</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights/economics-of-climate-finance</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights/governance-of-data</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights/research-rigour-under-pressure</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/insights/building-technical-teams-in-public-sector</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/careers</loc><priority>0.6</priority></url>
+  <url><loc>https://arvington-consultancies.vercel.app/contact</loc><priority>0.7</priority></url>
+</urlset>

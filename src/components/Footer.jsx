@@ -49,9 +49,18 @@ export default function Footer() {
       <div className="container-institutional pt-20 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-navy/10">
           <div className="lg:col-span-5">
-            <span className="font-display text-2xl tracking-wide text-navy">
-              ARVINGTON<span className="text-gold">.</span>
-            </span>
+            <Link to="/" className="inline-flex items-center gap-3">
+              <img
+                src="/images/brand/arvington-mark.png"
+                alt="Arvington"
+                width={40}
+                height={40}
+                className="h-9 w-9 object-contain"
+              />
+              <span className="font-display text-2xl tracking-wide text-navy">
+                ARVINGTON<span className="text-gold">.</span>
+              </span>
+            </Link>
             <p className="eyebrow text-gold/80 mt-4 mb-6">Consulting &middot; Analytics &middot; Strategic Advisory</p>
             <p className="text-charcoal-soft leading-relaxed max-w-md text-justify-pretty">
               A multidisciplinary institution built to strengthen organisations through superior

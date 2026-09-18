@@ -3,8 +3,14 @@ import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { capabilities } from '../data/capabilities'
+import useSEO from '../hooks/useSEO'
 
 export default function Capabilities() {
+  useSEO({
+    title: 'Capabilities',
+    description: 'Strategy, Analytics & AI, Economics & Finance, Research, Technology and Institutional Advisory \u2014 the six capability areas Arvington deploys together.',
+    path: '/capabilities',
+  })
   return (
     <div>
       <PageHero
