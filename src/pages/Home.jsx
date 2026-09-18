@@ -26,7 +26,6 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-4xl"
           >
             <div className="flex items-center gap-3 mb-8">
               <span className="w-10 h-px bg-gold" />
@@ -35,7 +34,7 @@ export default function Home() {
             <h1 className="font-display font-medium text-5xl sm:text-6xl lg:text-7xl leading-[1.04] text-navy">
               Strengthening Institutions Through Superior Decisions.
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-charcoal-soft leading-relaxed max-w-2xl text-justify-pretty">
+            <p className="mt-8 text-lg md:text-xl text-charcoal-soft leading-relaxed text-justify-pretty w-full max-w-5xl">
               Arvington Ltd. is a multidisciplinary consulting, analytics and strategic advisory
               firm. We integrate strategy, economics, artificial intelligence, data science,
               finance, research, technology and institutional expertise to address the complex

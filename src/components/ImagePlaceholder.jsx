@@ -10,7 +10,7 @@ export default function ImagePlaceholder({ label = 'Image', ratio = 'aspect-[4/3
           src={src}
           alt={alt || label}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain"
           onError={() => setErrored(true)}
         />
       </div>

@@ -103,26 +103,27 @@ export default function Leadership() {
         />
         <div className="py-24 md:py-28">
           <div className="container-institutional">
-            <div className="grid sm:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {board.map((member, i) => (
                 <Reveal key={member.name + i} direction="up" delay={(i % 2) * 0.08}>
-                  <div id={`board-${slugify(member.name)}`} className="flex gap-6 p-7 h-full border border-navy/10 scroll-mt-28">
-                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-28 h-28 shrink-0" src={personPhoto(member.name)} alt={member.name} />
-                    <div>
-                      <h3 className="font-display text-lg text-navy">
-                        {member.name}
-                        {member.credentials ? `, ${member.credentials}` : ''}
-                      </h3>
-                      <p className="eyebrow text-gold mt-1 mb-1 tracking-normal normal-case font-normal text-charcoal-soft">
-                        {member.role}
-                      </p>
-                      {member.portfolio && (
-                        <p className="text-sm text-charcoal-soft mb-2">{member.portfolio}</p>
-                      )}
-                      {member.affiliation && (
-                        <p className="text-xs text-charcoal-soft/80 leading-relaxed">{member.affiliation}</p>
-                      )}
-                    </div>
+                  <div
+                    id={`board-${slugify(member.name)}`}
+                    className="p-7 h-full border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28"
+                  >
+                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(member.name)} alt={member.name} />
+                    <h3 className="font-display text-lg text-navy">
+                      {member.name}
+                      {member.credentials ? `, ${member.credentials}` : ''}
+                    </h3>
+                    <p className="eyebrow text-gold mt-1 mb-1 tracking-normal normal-case font-normal text-charcoal-soft">
+                      {member.role}
+                    </p>
+                    {member.portfolio && (
+                      <p className="text-sm text-charcoal-soft mb-2">{member.portfolio}</p>
+                    )}
+                    {member.affiliation && (
+                      <p className="text-xs text-charcoal-soft/80 leading-relaxed">{member.affiliation}</p>
+                    )}
                   </div>
                 </Reveal>
               ))}

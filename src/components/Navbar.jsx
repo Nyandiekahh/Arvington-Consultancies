@@ -46,9 +46,9 @@ export default function Navbar() {
           <img
             src="/images/brand/arvington-mark.png"
             alt="Arvington"
-            width={40}
-            height={40}
-            className="h-8 w-8 md:h-10 md:w-10 object-contain"
+            width={56}
+            height={56}
+            className="h-11 w-11 md:h-14 md:w-14 object-contain"
           />
           <span className="font-display text-xl md:text-2xl tracking-wide text-navy">
             ARVINGTON<span className="text-gold">.</span>

@@ -53,9 +53,9 @@ export default function Footer() {
               <img
                 src="/images/brand/arvington-mark.png"
                 alt="Arvington"
-                width={40}
-                height={40}
-                className="h-9 w-9 object-contain"
+                width={64}
+                height={64}
+                className="h-14 w-14 md:h-16 md:w-16 object-contain"
               />
               <span className="font-display text-2xl tracking-wide text-navy">
                 ARVINGTON<span className="text-gold">.</span>
