@@ -22,7 +22,7 @@ export default function PageHero({ eyebrow, title, description, tall = false }) 
               <span className="eyebrow text-gold">{eyebrow}</span>
             </div>
           )}
-          <h1 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl leading-[1.1] max-w-4xl text-navy">
+          <h1 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl leading-[1.1] w-full text-navy">
             {title}
           </h1>
           {description && (
