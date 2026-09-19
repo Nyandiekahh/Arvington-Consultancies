@@ -29,7 +29,7 @@ export default function SectionHeading({
       {description && (
         <Reveal direction="up" delay={0.16} duration={0.7}>
           <p
-            className={`mt-6 text-lg leading-relaxed text-justify-pretty w-full max-w-5xl ${
+            className={`mt-6 text-lg leading-relaxed text-justify-pretty w-full ${
               light ? 'text-paper/75' : 'text-charcoal-soft'
             } ${isCenter ? 'mx-auto' : ''}`}
           >

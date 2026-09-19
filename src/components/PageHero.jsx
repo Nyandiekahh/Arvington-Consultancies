@@ -26,7 +26,7 @@ export default function PageHero({ eyebrow, title, description, tall = false }) 
             {title}
           </h1>
           {description && (
-            <p className="mt-7 text-lg md:text-xl text-charcoal-soft leading-relaxed text-justify-pretty w-full max-w-5xl">
+            <p className="mt-7 text-lg md:text-xl text-charcoal-soft leading-relaxed text-justify-pretty w-full">
               {description}
             </p>
           )}

@@ -34,7 +34,7 @@ export default function Home() {
             <h1 className="font-display font-medium text-5xl sm:text-6xl lg:text-7xl leading-[1.04] text-navy">
               Strengthening Institutions Through Superior Decisions.
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-charcoal-soft leading-relaxed text-justify-pretty w-full max-w-5xl">
+            <p className="mt-8 text-lg md:text-xl text-charcoal-soft leading-relaxed text-justify-pretty w-full">
               Arvington Ltd. is a multidisciplinary consulting, analytics and strategic advisory
               firm. We integrate strategy, economics, artificial intelligence, data science,
               finance, research, technology and institutional expertise to address the complex

@@ -165,28 +165,26 @@ export default function Leadership() {
                 <Reveal key={v.id} direction="up" delay={(i % 6) * 0.04}>
                   <Link
                     to={`/consulting-verticals#vertical-${v.id}`}
-                    className={`block p-6 h-full flex gap-5 transition-colors duration-300 ${
+                    className={`block p-7 h-full transition-colors duration-300 ${
                       v.directorName
-                        ? 'border border-navy/10 bg-paper hover:border-gold/60'
+                        ? 'border border-navy/12 bg-paper hover:border-gold/60'
                         : 'border border-dashed border-navy/15 bg-paper/60'
                     }`}
                   >
                     <ImagePlaceholder
                       label={v.directorName ? 'Photo' : 'Vacant'}
                       ratio="aspect-square"
-                      className={`w-20 h-20 shrink-0 ${v.directorName ? '' : 'opacity-60'}`}
+                      className={`mb-5 ${v.directorName ? '' : 'opacity-60'}`}
                       src={personPhoto(v.directorName)}
                       alt={v.directorName}
                     />
-                    <div>
-                      <span className="font-mono text-xs text-gold">{String(v.id).padStart(2, '0')}</span>
-                      <h3 className={`font-display text-base mt-1 mb-0.5 leading-snug ${v.directorName ? 'text-navy' : 'text-navy/50'}`}>
-                        {v.directorName ? `${v.directorName}${v.directorCredentials ? `, ${v.directorCredentials}` : ''}` : 'To Be Appointed'}
-                      </h3>
-                      <p className="text-xs text-charcoal-soft eyebrow tracking-normal normal-case font-normal">
-                        {v.director}
-                      </p>
-                    </div>
+                    <span className="font-mono text-xs text-gold">{String(v.id).padStart(2, '0')}</span>
+                    <h3 className={`font-display text-lg mt-2 mb-0.5 leading-snug ${v.directorName ? 'text-navy' : 'text-navy/50'}`}>
+                      {v.directorName ? `${v.directorName}${v.directorCredentials ? `, ${v.directorCredentials}` : ''}` : 'To Be Appointed'}
+                    </h3>
+                    <p className="text-sm text-charcoal-soft eyebrow tracking-normal normal-case font-normal">
+                      {v.director}
+                    </p>
                   </Link>
                 </Reveal>
               ))}
