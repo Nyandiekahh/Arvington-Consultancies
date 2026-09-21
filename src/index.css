@@ -43,7 +43,7 @@
     background-image: url("/images/brand/arvington-logo-full.svg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: clamp(280px, 35vw, 500px) auto;
+    background-size: 80vw auto;
     opacity: 0.2;
     pointer-events: none;
     z-index: 0;
