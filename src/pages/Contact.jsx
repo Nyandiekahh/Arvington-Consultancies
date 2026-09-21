@@ -42,7 +42,11 @@ const howHeardOptions = [
 ]
 
 const verticalOptions = [
-  ...verticals.map((v) => ({ id: String(v.id), label: v.name, tags: v.capabilities.slice(0, 2).join(' · ') })),
+  ...verticals.map((v) => ({
+    id: String(v.id),
+    label: v.name,
+    tags: v.capabilities.slice(0, 2).join(' · '),
+  })),
   {
     id: 'integrated',
     label: 'Integrated / Multidisciplinary Engagement',
@@ -82,14 +86,17 @@ const initialForm = {
 export default function Contact() {
   useSEO({
     title: 'Contact',
-    description: 'Discuss an engagement with Arvington Ltd. Reach our team to explore strategy, analytics, economics, research, technology or institutional advisory support.',
+    description:
+      'Discuss an engagement with Arvington Ltd. Reach our team to explore strategy, analytics, economics, research, technology or institutional advisory support.',
     path: '/contact',
   })
+
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState(initialForm)
 
-  const update = (field, value) => setForm((prev) => ({ ...prev, [field]: value }))
+  const update = (field, value) =>
+    setForm((prev) => ({ ...prev, [field]: value }))
 
   const toggleEngagement = (type) => {
     setForm((prev) => ({
@@ -105,6 +112,53 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const selectedVertical =
+      verticalOptions.find((o) => o.id === form.vertical)?.label ||
+      'Not specified'
+
+    const message = `
+*NEW ARVINGTON CONSULTATION REQUEST*
+
+*CONTACT DETAILS*
+Name: ${form.fullName || 'Not provided'}
+Organisation: ${form.organisation || 'Not provided'}
+Position: ${form.position || 'Not provided'}
+Email: ${form.email || 'Not provided'}
+Telephone: ${form.telephone || 'Not provided'}
+
+*CONSULTING VERTICAL*
+${selectedVertical}
+
+*PROJECT INFORMATION*
+Description:
+${form.description || 'Not provided'}
+
+Project Stage: ${form.stage || 'Not specified'}
+
+Engagement Types:
+${
+  form.engagementSelections.length
+    ? form.engagementSelections.map((type) => `• ${type}`).join('\n')
+    : 'Not specified'
+}
+
+*CONSULTATION SCHEDULING*
+Preferred Mode: ${form.mode || 'Not specified'}
+Preferred Date: ${form.date || 'Not specified'}
+Preferred Time: ${form.time || 'Not specified'}
+
+*HOW THEY HEARD ABOUT ARVINGTON*
+${form.howHeard || 'Not specified'}
+`.trim()
+
+    const whatsappNumber = '254719729569'
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`
+
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
     setSubmitted(true)
   }
 
@@ -129,12 +183,18 @@ export default function Contact() {
             <div className="lg:sticky lg:top-32 flex flex-col gap-10">
               <div>
                 <p className="eyebrow text-gold mb-3">Correspondence</p>
-                <p className="text-navy text-lg">engage@arvington.com</p>
+                <p className="text-navy text-lg">0719729569</p>
               </div>
+
               <div>
                 <p className="eyebrow text-gold mb-3">Location</p>
-                <p className="text-charcoal-soft leading-relaxed">Nairobi, Kenya<br />Global Advisory Network</p>
+                <p className="text-charcoal-soft leading-relaxed">
+                  Nairobi, Kenya
+                  <br />
+                  Global Advisory Network
+                </p>
               </div>
+
               <div>
                 <p className="eyebrow text-gold mb-3">What Happens Next</p>
                 <p className="text-charcoal-soft leading-relaxed text-justify-pretty">
@@ -148,6 +208,47 @@ export default function Contact() {
           </div>
 
           <div className="lg:col-span-8">
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              <a
+                href="https://wa.me/254719729569"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-navy/15 p-8 hover:border-gold hover:bg-pale/40 transition-all duration-300"
+              >
+                <p className="eyebrow text-gold mb-3">Direct Contact</p>
+                <h2 className="font-display text-2xl text-navy mb-3">
+                  Talk to One of Us
+                </h2>
+                <p className="text-charcoal-soft leading-relaxed mb-6">
+                  Have a quick question or prefer to speak directly with a member of the
+                  Arvington team? Start a conversation with us on WhatsApp.
+                </p>
+                <span className="text-navy text-sm uppercase tracking-wide font-medium">
+                  WhatsApp 0719729569 →
+                </span>
+              </a>
+
+              <a
+                href="https://forms.gle/5VuTsMZ8dCqu9VhVA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-navy/15 p-8 hover:border-gold hover:bg-pale/40 transition-all duration-300"
+              >
+                <p className="eyebrow text-gold mb-3">Detailed Enquiry</p>
+                <h2 className="font-display text-2xl text-navy mb-3">
+                  Submit a Consultation Request
+                </h2>
+                <p className="text-charcoal-soft leading-relaxed mb-6">
+                  If you would rather provide your requirements in detail, complete our
+                  consultation form and provide the information needed for our team to review
+                  your enquiry.
+                </p>
+                <span className="text-navy text-sm uppercase tracking-wide font-medium">
+                  Open Consultation Form →
+                </span>
+              </a>
+            </div>
+
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div
@@ -170,7 +271,14 @@ export default function Contact() {
               ) : (
                 <motion.form
                   key={`step-${step}`}
-                  onSubmit={step === STEPS.length ? handleSubmit : (e) => { e.preventDefault(); next() }}
+                  onSubmit={
+                    step === STEPS.length
+                      ? handleSubmit
+                      : (e) => {
+                          e.preventDefault()
+                          next()
+                        }
+                  }
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
@@ -190,10 +298,14 @@ export default function Contact() {
                         >
                           {i + 1}
                         </span>
-                        {i < STEPS.length - 1 && <span className="w-4 h-px bg-navy/15" />}
+
+                        {i < STEPS.length - 1 && (
+                          <span className="w-4 h-px bg-navy/15" />
+                        )}
                       </div>
                     ))}
                   </div>
+
                   <p className="eyebrow text-gold mb-8">
                     Section {step} &middot; {STEPS[step - 1]}
                   </p>
@@ -210,6 +322,7 @@ export default function Contact() {
                           placeholder="Your full name"
                         />
                       </div>
+
                       <div>
                         <label className={labelClass}>Organisation</label>
                         <input
@@ -219,6 +332,7 @@ export default function Contact() {
                           placeholder="Company / institution"
                         />
                       </div>
+
                       <div>
                         <label className={labelClass}>Position</label>
                         <input
@@ -228,6 +342,7 @@ export default function Contact() {
                           placeholder="Your role"
                         />
                       </div>
+
                       <div>
                         <label className={labelClass}>Email</label>
                         <input
@@ -239,6 +354,7 @@ export default function Contact() {
                           placeholder="you@organisation.com"
                         />
                       </div>
+
                       <div>
                         <label className={labelClass}>Telephone</label>
                         <input
@@ -256,6 +372,7 @@ export default function Contact() {
                       <p className="text-charcoal-soft leading-relaxed text-justify-pretty mb-8">
                         Select the capability most relevant to your requirement.
                       </p>
+
                       <div className="grid sm:grid-cols-2 gap-3 max-h-[32rem] overflow-y-auto pr-2">
                         {verticalOptions.map((opt, i) => (
                           <button
@@ -269,10 +386,18 @@ export default function Contact() {
                             }`}
                           >
                             <span className="font-mono text-xs text-gold">
-                              {opt.id === 'integrated' ? '★' : String(i + 1).padStart(2, '0')}
+                              {opt.id === 'integrated'
+                                ? '★'
+                                : String(i + 1).padStart(2, '0')}
                             </span>
-                            <p className="text-sm text-navy font-medium mt-1 leading-snug">{opt.label}</p>
-                            <p className="text-xs text-charcoal-soft/70 mt-1 leading-relaxed">{opt.tags}</p>
+
+                            <p className="text-sm text-navy font-medium mt-1 leading-snug">
+                              {opt.label}
+                            </p>
+
+                            <p className="text-xs text-charcoal-soft/70 mt-1 leading-relaxed">
+                              {opt.tags}
+                            </p>
                           </button>
                         ))}
                       </div>
@@ -282,11 +407,15 @@ export default function Contact() {
                   {step === 3 && (
                     <div className="flex flex-col gap-10">
                       <div>
-                        <label className={labelClass}>Briefly describe your consulting needs</label>
+                        <label className={labelClass}>
+                          Briefly describe your consulting needs
+                        </label>
+
                         <p className="text-sm text-charcoal-soft/70 mb-3">
                           Tell us about the strategic question, institutional priority, project,
                           opportunity or challenge you would like to discuss.
                         </p>
+
                         <textarea
                           rows={5}
                           className={inputClass}
@@ -295,21 +424,32 @@ export default function Contact() {
                           placeholder="Describe your needs..."
                         />
                       </div>
+
                       <div>
-                        <label className={labelClass}>What stage is your project currently at?</label>
+                        <label className={labelClass}>
+                          What stage is your project currently at?
+                        </label>
+
                         <select
                           className={inputClass}
                           value={form.stage}
                           onChange={(e) => update('stage', e.target.value)}
                         >
                           <option value="">Select a stage</option>
+
                           {projectStages.map((s) => (
-                            <option key={s} value={s}>{s}</option>
+                            <option key={s} value={s}>
+                              {s}
+                            </option>
                           ))}
                         </select>
                       </div>
+
                       <div>
-                        <label className={labelClass}>What type of engagement are you seeking?</label>
+                        <label className={labelClass}>
+                          What type of engagement are you seeking?
+                        </label>
+
                         <div className="flex flex-wrap gap-2.5 mt-2">
                           {engagementTypes.map((type) => (
                             <button
@@ -334,6 +474,7 @@ export default function Contact() {
                     <div className="flex flex-col gap-10">
                       <div>
                         <label className={labelClass}>Preferred Mode</label>
+
                         <div className="flex flex-wrap gap-2.5 mt-2">
                           {consultationModes.map((mode) => (
                             <button
@@ -351,9 +492,11 @@ export default function Contact() {
                           ))}
                         </div>
                       </div>
+
                       <div className="grid sm:grid-cols-2 gap-8">
                         <div>
                           <label className={labelClass}>Preferred Date</label>
+
                           <input
                             type="date"
                             className={inputClass}
@@ -361,8 +504,10 @@ export default function Contact() {
                             onChange={(e) => update('date', e.target.value)}
                           />
                         </div>
+
                         <div>
                           <label className={labelClass}>Preferred Time</label>
+
                           <input
                             type="time"
                             className={inputClass}
@@ -377,46 +522,83 @@ export default function Contact() {
                   {step === 5 && (
                     <div className="flex flex-col gap-10">
                       <div>
-                        <label className={labelClass}>How did you hear about Arvington Ltd.?</label>
+                        <label className={labelClass}>
+                          How did you hear about Arvington Ltd.?
+                        </label>
+
                         <select
                           className={inputClass}
                           value={form.howHeard}
                           onChange={(e) => update('howHeard', e.target.value)}
                         >
                           <option value="">Select an option</option>
+
                           {howHeardOptions.map((o) => (
-                            <option key={o} value={o}>{o}</option>
+                            <option key={o} value={o}>
+                              {o}
+                            </option>
                           ))}
                         </select>
                       </div>
+
                       <div className="border border-navy/10 bg-pale/50 p-6">
-                        <p className="eyebrow text-navy/50 mb-4">Review Your Request</p>
+                        <p className="eyebrow text-navy/50 mb-4">
+                          Review Your Request
+                        </p>
+
                         <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
                           <div>
                             <dt className="text-charcoal-soft/60">Name</dt>
-                            <dd className="text-navy">{form.fullName || '—'}</dd>
-                          </div>
-                          <div>
-                            <dt className="text-charcoal-soft/60">Organisation</dt>
-                            <dd className="text-navy">{form.organisation || '—'}</dd>
-                          </div>
-                          <div>
-                            <dt className="text-charcoal-soft/60">Consulting Vertical</dt>
                             <dd className="text-navy">
-                              {verticalOptions.find((o) => o.id === form.vertical)?.label || '—'}
+                              {form.fullName || '—'}
                             </dd>
                           </div>
+
                           <div>
-                            <dt className="text-charcoal-soft/60">Project Stage</dt>
-                            <dd className="text-navy">{form.stage || '—'}</dd>
+                            <dt className="text-charcoal-soft/60">
+                              Organisation
+                            </dt>
+                            <dd className="text-navy">
+                              {form.organisation || '—'}
+                            </dd>
                           </div>
+
                           <div>
-                            <dt className="text-charcoal-soft/60">Preferred Mode</dt>
-                            <dd className="text-navy">{form.mode || '—'}</dd>
+                            <dt className="text-charcoal-soft/60">
+                              Consulting Vertical
+                            </dt>
+                            <dd className="text-navy">
+                              {verticalOptions.find(
+                                (o) => o.id === form.vertical
+                              )?.label || '—'}
+                            </dd>
                           </div>
+
                           <div>
-                            <dt className="text-charcoal-soft/60">Engagement Types</dt>
-                            <dd className="text-navy">{form.engagementSelections.join(', ') || '—'}</dd>
+                            <dt className="text-charcoal-soft/60">
+                              Project Stage
+                            </dt>
+                            <dd className="text-navy">
+                              {form.stage || '—'}
+                            </dd>
+                          </div>
+
+                          <div>
+                            <dt className="text-charcoal-soft/60">
+                              Preferred Mode
+                            </dt>
+                            <dd className="text-navy">
+                              {form.mode || '—'}
+                            </dd>
+                          </div>
+
+                          <div>
+                            <dt className="text-charcoal-soft/60">
+                              Engagement Types
+                            </dt>
+                            <dd className="text-navy">
+                              {form.engagementSelections.join(', ') || '—'}
+                            </dd>
                           </div>
                         </dl>
                       </div>
@@ -432,7 +614,9 @@ export default function Contact() {
                       >
                         &larr; Back
                       </button>
-                    ) : <span />}
+                    ) : (
+                      <span />
+                    )}
 
                     {step < STEPS.length ? (
                       <button
@@ -447,7 +631,8 @@ export default function Contact() {
                         type="submit"
                         className="inline-flex items-center gap-2 bg-navy text-paper px-8 py-4 text-sm font-medium uppercase tracking-wide hover:bg-navy-light transition-colors duration-300"
                       >
-                        Submit Consultation Request <span aria-hidden="true">&rarr;</span>
+                        Submit Consultation Request{' '}
+                        <span aria-hidden="true">&rarr;</span>
                       </button>
                     )}
                   </div>

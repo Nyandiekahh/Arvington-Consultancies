@@ -31,12 +31,38 @@
     text-rendering: optimizeLegibility;
   }
 
+  /*
+   * GLOBAL ARVINGTON WATERMARK
+   * Uses the full Arvington logo SVG.
+   * It stays fixed behind the website content while scrolling.
+   */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/images/brand/arvington-logo-full.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: clamp(280px, 35vw, 500px) auto;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
   ::selection {
     background-color: var(--color-gold);
     color: var(--color-paper);
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     color: var(--color-navy);
     letter-spacing: 0;
@@ -45,14 +71,17 @@
   ::-webkit-scrollbar {
     width: 10px;
   }
+
   ::-webkit-scrollbar-track {
     background: var(--color-pale);
   }
+
   ::-webkit-scrollbar-thumb {
     background: var(--color-navy-light);
     border-radius: 0;
     border: 2px solid var(--color-pale);
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-gold);
   }
@@ -101,7 +130,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
