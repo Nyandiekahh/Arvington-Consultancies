@@ -21,7 +21,7 @@ export const board = [
     role: 'Partner Director',
     portfolio: 'Technology, Intelligence, Research & Innovation',
     affiliation:
-      'Chairperson, Department of Statistics and Actuarial Sciences, Jomo Kenyatta University of Agriculture & Technology',
+      'Lecturer, Researcher and former chairperson of the Department of Statistics and Actuarial Sciences, Jomo Kenyatta University of Agriculture & Technology.',
     status: 'filled',
   },
   {
@@ -70,7 +70,7 @@ export const cSuiteMandate = {
 export const cSuite = [
   {
     code: 'CEO',
-    title: 'Founder & Chief Executive Officer',
+    title: 'Chief Operating Officerr',
     name: 'Seth Kipsang',
     credentials: 'MSc, MCIM, PhD Candidate',
     tagline: 'System Architect | Institution Builder | Statistician | Data Scientist | Strategic Advisor',
@@ -84,7 +84,7 @@ export const cSuite = [
   },
   {
     code: 'COO',
-    title: 'Chief Operating Officer',
+    title: 'Founder & Chief Executive Officer',
     name: 'Dr. John Kiche',
     credentials: 'PhD',
     tagline: 'Operational Strategy | Institutional Execution | Analytics | Multidisciplinary Integration',
