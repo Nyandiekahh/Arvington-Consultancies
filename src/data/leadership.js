@@ -70,13 +70,13 @@ export const cSuiteMandate = {
 export const cSuite = [
   {
     code: 'CEO',
-    title: 'Chief Operating Officerr',
+    title: 'Chief Operating Officer',
     name: 'Seth Kipsang',
     credentials: 'MSc, MCIM, PhD Candidate',
     tagline: 'System Architect | Institution Builder | Statistician | Data Scientist | Strategic Advisor',
     mantra: 'Architecting systems and strengthening institutions through superior decisions.',
     bio: [
-      `Founder and Chief Executive Officer of Arvington Ltd, a system architecture and institution-building firm operating through consulting, analytics and advisory. He leads Arvington’s direction, architecture, capabilities and development.`,
+      `Chief Operating Officer of Arvington Ltd, a system architecture and institution-building firm operating through consulting, analytics and advisory. He leads Arvington’s direction, architecture, capabilities and development.`,
       `He aligns strategy, governance, people, capital, data, technology and expertise to strengthen institutional capability, improve decisions and create enduring value. His formation spans statistics, data science, economics, artificial intelligence, research and public policy, with expertise in Bayesian modelling, causal inference, machine learning, health economics and techno-economic analysis.`,
       `He has contributed to initiatives involving the IPCC, UNDP, GPF, and icipe, addressing challenges across health systems, climate and development, energy, infrastructure and public policy. Seth is pursuing a PhD in Medical Statistics at the University of Nairobi and lectures in Statistics and Data Science at JKUAT and the European Business Institute of Luxembourg.`,
       `His leadership is grounded in systems thinking, institutional design and integration, architecting systems and building institutions to perform and endure.`,
@@ -90,7 +90,7 @@ export const cSuite = [
     tagline: 'Operational Strategy | Institutional Execution | Analytics | Multidisciplinary Integration',
     mantra: 'Translating strategy, capabilities and expertise into disciplined execution and institutional performance.',
     bio: [
-      `Dr. John Kiche is the Chief Operating Officer of Arvington Limited, providing enterprise-wide leadership for operations, execution systems and organisational coordination. He works closely with the C-Suite to translate Arvington's strategic direction into coherent operating structures, delivery standards and measurable institutional performance.`,
+      `Dr. John Kiche is the Founder & Chief Executive Officer of Arvington Limited, providing enterprise-wide leadership for operations, execution systems and organisational coordination. He works closely with the C-Suite to translate Arvington's strategic direction into coherent operating structures, delivery standards and measurable institutional performance.`,
       `A statistician, data scientist and quantitative specialist, Dr. Kiche's expertise spans statistical modelling, applied data science, quantitative analysis, research methodology and predictive analytics. He serves as a Lecturer in the Department of Statistics and Actuarial Sciences at Jomo Kenyatta University of Agriculture and Technology.`,
       `He holds a PhD in Mathematical Statistics from PAUSTI, an MSc in Data Science from the University of Nairobi, an MSc in Applied Statistics from JKUAT, a Postgraduate Diploma in Education Administration & Policy from Kenyatta University, and a BSc in Mathematics and Computer Science from JKUAT.`,
       `His leadership is grounded in operational discipline, analytical precision, methodological rigour and institutional integration, connecting strategy to execution, people to processes, expertise to delivery and capability to performance.`,
