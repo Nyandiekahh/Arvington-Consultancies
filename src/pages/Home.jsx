@@ -1,369 +1,433 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import NodeNetwork from '../components/NodeNetwork'
-import SectionHeading from '../components/SectionHeading'
-import Reveal from '../components/Reveal'
-import PipelineDiagram from '../components/PipelineDiagram'
-import StatCounter from '../components/StatCounter'
-import InsightCard from '../components/InsightCard'
-import ImagePlaceholder from '../components/ImagePlaceholder'
-import { personPhoto } from '../utils/media'
-import { capabilities, industries, pillars } from '../data/capabilities'
-import { insights } from '../data/insights'
-import { tiers, verticals } from '../data/verticals'
-import { testimonials } from '../data/testimonials'
+import { AnimatePresence, motion } from 'framer-motion'
+import HeroSlideshow from '../components/HeroSlideshow'
 import useSEO from '../hooks/useSEO'
+
+const HERO_SLIDES = [
+  {
+    src: '/images/hero/slide-1.jpg',
+    alt: 'Arvington client engagement',
+    eyebrow: 'Consulting · Strategic Advisory',
+    title: 'Institutions rise or fall on the quality of their decisions.',
+    description:
+      'Arvington advises boards, ministries and enterprises on the decisions that determine what an institution becomes.',
+  },
+  {
+    src: '/images/hero/slide-2.jpg',
+    alt: 'Arvington advisory session',
+    eyebrow: 'Advisory · Decision Intelligence',
+    title: 'Better decisions begin with better questions.',
+    description:
+      'We bring strategy, evidence and institutional understanding together to clarify the decisions that matter most.',
+  },
+  {
+    src: '/images/hero/slide-3.jpg',
+    alt: 'Arvington strategy workshop',
+    eyebrow: 'Strategy · Transformation',
+    title: 'Strategy matters only when it can be executed.',
+    description:
+      'We translate ambition into priorities, capabilities and programmes that institutions can carry forward.',
+  },
+  {
+    src: '/images/hero/slide-4.jpg',
+    alt: 'Arvington research and analytics',
+    eyebrow: 'Analytics · Research',
+    title: 'Evidence turns complexity into something decision makers can act on.',
+    description:
+      'We turn research, data and analysis into practical decision intelligence.',
+  },
+  {
+    src: '/images/hero/slide-5.jpg',
+    alt: 'Arvington institutional leadership',
+    eyebrow: 'Leadership · Institutional Performance',
+    title: 'Strong institutions are built for decisions that outlast individuals.',
+    description:
+      'We help leadership teams strengthen governance, capability and execution around long-term purpose.',
+  },
+]
+
+const CAPABILITIES = [
+  {
+    number: '01',
+    title: 'Strategy',
+    text: 'Direction, priorities and choices grounded in what an institution can actually deliver.',
+  },
+  {
+    number: '02',
+    title: 'Intelligence',
+    text: 'Research, data and analysis turned into evidence that decision makers can act on.',
+  },
+  {
+    number: '03',
+    title: 'Execution',
+    text: 'Strategy translated into capability, programmes and institutional outcomes.',
+  },
+]
 
 export default function Home() {
   useSEO({ path: '/' })
+
+  const [heroIndex, setHeroIndex] = useState(0)
+
+  const currentHero = HERO_SLIDES[heroIndex]
+
   return (
-    <div>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-paper pt-20">
-        <NodeNetwork className="absolute inset-0 w-full h-full" />
-        <div className="container-institutional relative py-24 md:py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <span className="w-10 h-px bg-gold" />
-              <span className="eyebrow text-navy/60">Consulting &middot; Analytics &middot; Strategic Advisory</span>
+    <div className="overflow-hidden">
+
+      {/* =========================================================
+          HERO
+      ========================================================= */}
+      <section className="relative min-h-[680px] h-[88vh] flex items-end overflow-hidden">
+        <HeroSlideshow
+          images={HERO_SLIDES}
+          onSlideChange={setHeroIndex}
+        />
+
+        {/* layered colour treatment */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/55 to-navy/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent" />
+
+        <div className="container-institutional relative z-10 pb-20 md:pb-24">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={heroIndex}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{
+                duration: 0.65,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="max-w-4xl"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-10 h-px bg-gold" />
+
+                <span className="eyebrow text-paper/75">
+                  {currentHero.eyebrow}
+                </span>
+              </div>
+
+              <h1 className="font-display font-medium text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.04] text-paper max-w-4xl">
+                {currentHero.title}
+              </h1>
+
+              <p className="mt-6 text-base md:text-lg text-paper/80 leading-relaxed max-w-2xl">
+                {currentHero.description}
+              </p>
+
+              <div className="mt-8">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center bg-paper text-navy px-7 py-3.5 text-sm font-medium hover:bg-gold transition-colors duration-300"
+                >
+                  Engage Arvington
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* bottom slide indicator */}
+        <div className="absolute bottom-7 right-8 md:right-12 z-10 flex items-center gap-3">
+          <span className="text-xs tracking-widest text-paper/50">
+            0{heroIndex + 1}
+          </span>
+
+          <span className="w-16 h-px bg-paper/30">
+            <span
+              className="block h-px bg-gold transition-all duration-500"
+              style={{
+                width: `${((heroIndex + 1) / HERO_SLIDES.length) * 100}%`,
+              }}
+            />
+          </span>
+
+          <span className="text-xs tracking-widest text-paper/40">
+            0{HERO_SLIDES.length}
+          </span>
+        </div>
+      </section>
+
+
+      {/* =========================================================
+          POSITION — DARK STATEMENT BAND
+      ========================================================= */}
+      <section className="relative bg-navy text-paper">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gold/5 pointer-events-none" />
+
+        <div className="container-institutional relative py-16 md:py-20">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+
+            <div className="md:col-span-3">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-px bg-gold" />
+
+                <span className="eyebrow text-paper/50">
+                  Our perspective
+                </span>
+              </div>
             </div>
-            <h1 className="font-display font-medium text-5xl sm:text-6xl lg:text-7xl leading-[1.04] text-navy">
-              Strengthening Institutions Through Superior Decisions.
-            </h1>
-            <p className="mt-8 text-lg md:text-xl text-charcoal-soft leading-relaxed text-justify-pretty w-full">
-              Arvington Ltd. is a multidisciplinary consulting, analytics and strategic advisory
-              firm. We integrate strategy, economics, artificial intelligence, data science,
-              finance, research, technology and institutional expertise to address the complex
-              organisational and societal challenges our clients are actually facing, not the
-              simplified version of them.
+
+            <div className="md:col-span-9">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] leading-tight font-medium">
+                We help institutions make consequential decisions with
+                <span className="text-gold"> greater clarity.</span>
+              </h2>
+
+              <p className="mt-5 max-w-3xl text-paper/65 leading-relaxed">
+                Arvington brings strategy, evidence and execution together
+                around the decision itself — helping leaders understand
+                complexity, choose a direction and build the capability to
+                deliver it.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      {/* =========================================================
+          CAPABILITIES
+      ========================================================= */}
+      <section className="relative bg-paper py-16 md:py-20">
+        <div className="container-institutional">
+
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <div>
+              <p className="eyebrow text-charcoal-soft mb-3">
+                What we do
+              </p>
+
+              <h2 className="font-display font-medium text-3xl md:text-4xl text-navy">
+                From decision to delivery.
+              </h2>
+            </div>
+
+            <p className="max-w-md text-sm md:text-base text-charcoal-soft leading-relaxed">
+              Three connected capabilities that allow us to work across the
+              full life of an institutional challenge.
             </p>
-            <div className="mt-11 flex flex-wrap items-center gap-5">
-              <Link
-                to="/capabilities"
-                className="inline-flex items-center gap-2 bg-navy text-paper px-8 py-4 text-sm font-medium uppercase tracking-wide hover:bg-navy-light transition-colors duration-300"
+          </div>
+
+
+          <div className="grid md:grid-cols-3 gap-4">
+
+            {CAPABILITIES.map((capability, index) => (
+              <motion.div
+                key={capability.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.08,
+                }}
+                className={`relative overflow-hidden p-7 md:p-8 min-h-[245px] flex flex-col justify-between group ${
+                  index === 1
+                    ? 'bg-navy text-paper'
+                    : 'bg-[#F0ECE3] text-navy'
+                }`}
               >
-                Explore Our Capabilities
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
+
+                {/* decorative number */}
+                <span
+                  className={`absolute -right-3 -top-7 font-display text-[8rem] leading-none select-none ${
+                    index === 1
+                      ? 'text-paper/[0.04]'
+                      : 'text-navy/[0.035]'
+                  }`}
+                >
+                  {capability.number}
+                </span>
+
+                <div className="relative">
+                  <span
+                    className={`text-xs tracking-[0.25em] ${
+                      index === 1
+                        ? 'text-gold'
+                        : 'text-charcoal-soft'
+                    }`}
+                  >
+                    {capability.number}
+                  </span>
+
+                  <h3 className="font-display text-2xl md:text-3xl mt-5">
+                    {capability.title}
+                  </h3>
+                </div>
+
+                <p
+                  className={`relative max-w-sm leading-relaxed text-sm ${
+                    index === 1
+                      ? 'text-paper/65'
+                      : 'text-charcoal-soft'
+                  }`}
+                >
+                  {capability.text}
+                </p>
+
+                {/* subtle bottom accent */}
+                <span
+                  className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 ${
+                    index === 1 ? 'bg-gold' : 'bg-navy'
+                  }`}
+                />
+              </motion.div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+
+      {/* =========================================================
+          VISUAL STATEMENT
+      ========================================================= */}
+      <section className="relative bg-[#E7E0D3]">
+        <div className="grid md:grid-cols-2 min-h-[420px]">
+
+          {/* image */}
+          <div
+            className="min-h-[320px] md:min-h-full bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('/images/site/selected-engagement.jpg')",
+            }}
+          />
+
+          {/* statement */}
+          <div className="flex items-center px-8 py-14 md:px-12 lg:px-16">
+            <div className="max-w-xl">
+
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-8 h-px bg-gold" />
+
+                <span className="eyebrow text-charcoal-soft">
+                  The Arvington approach
+                </span>
+              </div>
+
+              <blockquote className="font-display text-2xl md:text-3xl lg:text-[2.4rem] leading-tight text-navy">
+                “The quality of an institution is reflected in the quality of
+                the decisions it is able to make.”
+              </blockquote>
+
+              <p className="mt-6 text-sm md:text-base text-charcoal-soft leading-relaxed max-w-lg">
+                Our work begins by understanding the decision beneath the
+                problem. From there, we bring together the evidence, strategic
+                perspective and practical capability needed to move forward.
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================================================
+          WHO WE WORK WITH
+      ========================================================= */}
+      <section className="bg-paper py-16 md:py-20">
+        <div className="container-institutional">
+
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+
+            <div className="md:col-span-4">
+              <p className="eyebrow text-charcoal-soft mb-4">
+                Who we work with
+              </p>
+
+              <h2 className="font-display font-medium text-3xl md:text-4xl text-navy leading-tight">
+                Institutions that shape public and economic life.
+              </h2>
+            </div>
+
+            <div className="md:col-span-7 md:col-start-6">
+              <p className="text-lg text-charcoal-soft leading-relaxed">
+                We work with boards, ministries, enterprises and other
+                institutions facing decisions where strategy, evidence,
+                resources and execution intersect.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-xs tracking-[0.16em] uppercase text-navy/55">
+                <span>Public Institutions</span>
+                <span>•</span>
+                <span>Enterprises</span>
+                <span>•</span>
+                <span>Boards &amp; Leadership</span>
+                <span>•</span>
+                <span>Development</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================================================
+          FINAL CTA — NAVY + GOLD
+      ========================================================= */}
+      <section className="relative bg-navy text-paper overflow-hidden">
+
+        {/* decorative circles */}
+        <div className="absolute -right-24 -top-24 w-72 h-72 rounded-full border border-gold/15" />
+        <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full border border-gold/10" />
+
+        <div className="container-institutional relative py-20 md:py-24">
+          <div className="max-w-3xl">
+
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-10 h-px bg-gold" />
+
+              <span className="eyebrow text-paper/50">
+                Start a conversation
+              </span>
+            </div>
+
+            <h2 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
+              The right decision starts with understanding the problem.
+            </h2>
+
+            <p className="mt-6 text-paper/60 text-base md:text-lg leading-relaxed max-w-2xl">
+              Tell us what you are trying to solve. We will determine what
+              expertise, evidence and approach the problem requires.
+            </p>
+
+            <div className="mt-8">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 border border-navy/25 text-navy px-8 py-4 text-sm font-medium uppercase tracking-wide hover:border-navy transition-colors duration-300"
+                className="inline-flex items-center bg-gold text-navy px-8 py-4 text-sm font-medium hover:bg-paper transition-colors duration-300"
               >
-                Engage Arvington
+                Discuss an engagement
+
+                <svg
+                  className="ml-3"
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M5 12h13M13 6l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
             </div>
-          </motion.div>
-        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-10 left-0 right-0 flex justify-center"
-        >
-          <div className="flex flex-col items-center gap-2 text-navy/40">
-            <span className="eyebrow text-[0.62rem]">Scroll</span>
-            <motion.span
-              animate={{ y: [0, 6, 0] }}
-              transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-              className="w-px h-8 bg-navy/30"
-            />
-          </div>
-        </motion.div>
-      </section>
-
-      {/* INSTITUTIONAL POSITION */}
-      <section className="bg-pale/60 border-y border-navy/8 py-28 md:py-36">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="The Arvington Position"
-            title="Institutions Rise or Decline on the Quality of Their Decisions."
-          />
-          <div className="grid md:grid-cols-3 gap-10 md:gap-8 mt-16">
-            {[
-              {
-                label: 'Strategy',
-                text: 'Clarity on direction, priorities, competitive positioning and institutional growth, built from an honest read of what an organisation can actually execute.',
-              },
-              {
-                label: 'Intelligence',
-                text: 'Transformation of data, evidence and expertise into intelligence that a decision maker can actually act on with confidence.',
-              },
-              {
-                label: 'Execution',
-                text: 'Translation of strategy into organisational capability, programmes and measurable outcomes that survive contact with the institution.',
-              },
-            ].map((item, i) => (
-              <Reveal key={item.label} delay={i * 0.1} direction="up">
-                <div className="border-t border-gold pt-6">
-                  <h3 className="font-display text-2xl mb-4 text-navy">{item.label}</h3>
-                  <p className="text-charcoal-soft leading-relaxed text-justify-pretty">{item.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.3} className="mt-20 flex flex-wrap items-center gap-3 md:gap-4 justify-center">
-            {['Strategy', 'Intelligence', 'Decision', 'Execution', 'Institutional Value'].map((word, i, arr) => (
-              <div key={word} className="flex items-center gap-3 md:gap-4">
-                <span className="eyebrow text-navy/70">{word}</span>
-                {i < arr.length - 1 && <span className="text-gold text-sm">&rarr;</span>}
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* WHAT ARVINGTON DOES */}
-      <section className="py-28 md:py-36">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="Multidisciplinary Expertise"
-            title="Integrated for Decision-Making, Not Divided Into Silos."
-            description="The twenty consulting verticals that follow are not twenty disconnected businesses operating under a shared name. They are one institutional capability system, organised around the decisions our clients actually need to make."
-          />
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-            {capabilities.map((cap, i) => (
-              <Reveal key={cap.id} direction="up" delay={(i % 3) * 0.08}>
-                <div
-                  id={cap.id}
-                  className="group relative border border-navy/10 p-8 h-full hover:border-navy/30 hover:bg-pale/50 transition-all duration-400"
-                >
-                  <span className="font-mono text-xs text-gold">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="font-display text-xl md:text-2xl text-navy mt-4 mb-3">{cap.name}</h3>
-                  <p className="text-sm text-charcoal-soft italic mb-3">{cap.short}</p>
-                  <p className="text-charcoal-soft leading-relaxed text-justify-pretty">{cap.description}</p>
-                  <span className="absolute bottom-0 left-0 h-[2px] bg-gold w-0 group-hover:w-full transition-all duration-500" />
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2} className="mt-12 flex justify-center">
-            <Link
-              to="/capabilities"
-              className="inline-flex items-center gap-2 text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
-            >
-              View All Capabilities
-              <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* DECISION INTELLIGENCE / PIPELINE */}
-      <section className="py-28 md:py-36 bg-pale/60 border-y border-navy/8">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="Decision Intelligence"
-            title="The Integrating Institutional Capability."
-            description="Arvington does not treat disciplines as isolated services. We integrate multidisciplinary expertise around the decision itself, connecting evidence, analysis, strategy, technology, finance, governance and execution into a single continuous process."
-          />
-          <div className="mt-16 md:mt-20">
-            <PipelineDiagram />
           </div>
         </div>
       </section>
 
-      {/* CONSULTING VERTICALS PREVIEW */}
-      <section className="py-28 md:py-36">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="Consulting Verticals"
-            title="Twenty Verticals. One Integrated Advisory Institution."
-            description="Organised across three strategic tiers, from the core practices most engagements draw on first, to the specialist and future-facing verticals we are building deliberately."
-          />
-
-          <div className="mt-16 grid md:grid-cols-3 gap-6">
-            {tiers.map((tier, i) => {
-              const count = verticals.filter((v) => v.tier === tier.id).length
-              return (
-                <Reveal key={tier.id} direction="up" delay={i * 0.1}>
-                  <Link
-                    to={`/consulting-verticals#${tier.id}`}
-                    className="block h-full border border-navy/10 hover:border-navy/40 p-8 group transition-colors duration-300 bg-paper"
-                  >
-                    <div className="flex items-start justify-between mb-6">
-                      <span className="eyebrow text-gold">{tier.tier}</span>
-                      <span className="font-display text-3xl text-navy/20 group-hover:text-gold/50 transition-colors">
-                        {String(count).padStart(2, '0')}
-                      </span>
-                    </div>
-                    <h3 className="font-display text-xl md:text-2xl text-navy mb-4 leading-snug">{tier.label}</h3>
-                    <p className="text-charcoal-soft leading-relaxed text-justify-pretty">{tier.description}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm text-navy group-hover:text-gold transition-colors">
-                      View Verticals <span aria-hidden="true">&rarr;</span>
-                    </span>
-                  </Link>
-                </Reveal>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section className="py-24 border-y border-navy/8">
-        <div className="container-institutional">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
-            <StatCounter value={20} label="Consulting Verticals" />
-            <StatCounter value={7} label="Institutions Served" />
-            <StatCounter value={5} label="Capability Teams" />
-            <StatCounter value={9} label="Executive Leadership Roles" />
-          </div>
-        </div>
-      </section>
-
-      {/* INDUSTRIES SERVED */}
-      <section className="py-28 md:py-36">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="Institutions We Serve"
-            title="Built to Work Across the Institutions That Shape Public and Economic Life."
-          />
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-navy/10">
-            {industries.map((ind, i) => (
-              <Reveal key={ind.id} direction="up" delay={(i % 4) * 0.06}>
-                <div className="bg-paper p-8 h-full hover:bg-pale/60 transition-colors duration-300">
-                  <h3 className="font-display text-lg text-navy mb-3">{ind.name}</h3>
-                  <p className="text-sm text-charcoal-soft leading-relaxed text-justify-pretty">{ind.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY ARVINGTON / PILLARS */}
-      <section className="py-28 md:py-36 bg-pale/60 border-y border-navy/8">
-        <div className="container-institutional">
-          <SectionHeading eyebrow="The Arvington Difference" title="Five Pillars, Held to Consistently." />
-          <div className="mt-16 grid md:grid-cols-5 gap-8">
-            {pillars.map((pillar, i) => (
-              <Reveal key={pillar.id} direction="up" delay={i * 0.08}>
-                <div className="flex flex-col items-start gap-4">
-                  <span className="font-display text-4xl text-gold/70">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="font-display text-lg text-navy">{pillar.name}</h3>
-                  <p className="text-sm text-charcoal-soft leading-relaxed text-justify-pretty">{pillar.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED ENGAGEMENT / IMAGE */}
-      <section className="py-28 md:py-36">
-        <div className="container-institutional grid lg:grid-cols-2 gap-14 items-center">
-          <Reveal direction="right">
-            <ImagePlaceholder label="Selected Engagement" ratio="aspect-[4/3]" src="/images/site/selected-engagement.jpg" alt="Selected Engagement" />
-          </Reveal>
-          <Reveal direction="left">
-            <span className="eyebrow text-gold">Selected Engagement</span>
-            <h3 className="font-display text-3xl md:text-4xl text-navy mt-5 mb-6 leading-tight">
-              Health Economics & Pharmaceutical Strategy
-            </h3>
-            <p className="text-charcoal-soft leading-relaxed text-justify-pretty mb-6">
-              Market assessment, economic modelling and strategic decision support for a
-              pharmaceutical enterprise entering a new regulatory environment, where the
-              commercial case depended entirely on getting the underlying health economics
-              right before a single unit was sold.
-            </p>
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div>
-                <p className="eyebrow text-navy/50 mb-1">Sector</p>
-                <p className="text-navy">Health & Life Sciences</p>
-              </div>
-              <div>
-                <p className="eyebrow text-navy/50 mb-1">Approach</p>
-                <p className="text-navy">Economic Modelling</p>
-              </div>
-            </div>
-            <Link
-              to="/sectors"
-              className="inline-flex items-center gap-2 text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
-            >
-              Explore Sectors We Serve <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-28 md:py-36 bg-pale/60 border-y border-navy/8">
-        <div className="container-institutional">
-          <SectionHeading
-            eyebrow="What Our Clients Say"
-            title="Institutions Speaking From Their Own Engagements."
-            description="We do not publish testimonials that could not survive the client reading them again a year later. These are drawn directly from post-engagement conversations."
-          />
-          <div className="mt-16 grid lg:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} direction="up" delay={i * 0.1}>
-                <div className="bg-paper border border-navy/10 p-8 h-full flex flex-col">
-                  <span className="font-display text-4xl text-gold/60 leading-none mb-4">&ldquo;</span>
-                  <p className="text-charcoal leading-relaxed text-justify-pretty flex-1 mb-8">{t.quote}</p>
-                  <div className="flex items-center gap-4 pt-6 border-t border-navy/8">
-                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="w-14 h-14 shrink-0" src={personPhoto(t.name)} alt={t.name} />
-                    <div>
-                      <p className="font-display text-base text-navy leading-tight">{t.name}</p>
-                      <p className="text-xs text-charcoal-soft mt-1">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* INSIGHTS TEASER */}
-      <section className="py-28 md:py-36 bg-pale/60 border-t border-navy/8">
-        <div className="container-institutional">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-            <SectionHeading eyebrow="Arvington Insights" title="Executive Perspective and Institutional Intelligence." />
-            <Link
-              to="/insights"
-              className="inline-flex items-center gap-2 text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium whitespace-nowrap shrink-0"
-            >
-              All Insights <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-            {insights.slice(0, 3).map((insight, i) => (
-              <InsightCard key={insight.id} insight={insight} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-28 md:py-40 relative overflow-hidden">
-        <div className="container-institutional relative text-center max-w-3xl mx-auto border-t-2 border-b-2 border-gold/40 py-20">
-          <Reveal direction="up">
-            <span className="eyebrow text-gold">Engage Arvington</span>
-            <h2 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl mt-6 mb-8 leading-[1.1] text-navy">
-              Whatever the Challenge, Arvington Can Assemble the Right Expertise.
-            </h2>
-            <p className="text-charcoal-soft text-lg leading-relaxed mb-10 text-justify-pretty">
-              Whether the question concerns strategy, transformation, investment, analytics,
-              institutional performance, research or a genuinely multidisciplinary problem that
-              does not fit neatly into one practice area, we would welcome the conversation.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-navy text-paper px-9 py-4 text-sm font-medium uppercase tracking-wide hover:bg-navy-light transition-colors duration-300"
-            >
-              Discuss an Engagement <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
     </div>
   )
 }
