@@ -1,19 +1,32 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens — restyled to follow the KEBS website look:
+ * white canvas, black headings, #0166B1 primary blue, deeper blue bands,
+ * Assistant typeface. Token NAMES are unchanged (navy / gold / paper / pale…)
+ * so every existing page picks up the new look automatically:
+ *   navy  -> deep section-band blue
+ *   gold  -> primary accent blue
+ *   ink   -> headings / strong text (black)
+ */
 @theme {
-  --font-display: "Times New Roman", Times, "Liberation Serif", serif;
-  --font-body: "Times New Roman", Times, "Liberation Serif", serif;
-  --font-mono: "Times New Roman", Times, "Liberation Serif", serif;
+  --font-display: "Assistant", Arial, Helvetica, sans-serif;
+  --font-body: "Assistant", Arial, Helvetica, sans-serif;
+  --font-mono: "Assistant", Arial, Helvetica, sans-serif;
 
-  --color-navy: #201D19;
-  --color-navy-light: #37322A;
-  --color-paper: #FBFAF7;
-  --color-pale: #F1EEE6;
-  --color-pale-dim: #E7E1D3;
-  --color-gold: #A9832B;
-  --color-gold-light: #C9A24E;
-  --color-charcoal: #2A2825;
-  --color-charcoal-soft: #5C574C;
+  --color-ink: #000000;
+  --color-navy: #0E50AA;
+  --color-navy-light: #1A54AD;
+  --color-paper: #FFFFFF;
+  --color-pale: #F2F6FB;
+  --color-pale-dim: #E2EBF5;
+  --color-gold: #0166B1;
+  --color-gold-light: #3D8FD4;
+  --color-charcoal: #1A1A1A;
+  --color-charcoal-soft: #4D4D4D;
+  --color-sky: #9CCBFF;
+  --color-footer: #000000;
+  --color-strip: #225CA7;
 
   --breakpoint-xs: 420px;
 }
@@ -25,38 +38,20 @@
 
   body {
     background-color: var(--color-paper);
-    color: var(--color-charcoal);
+    color: rgba(0, 0, 0, 0.7);
     font-family: var(--font-body);
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  /*
-   * GLOBAL ARVINGTON WATERMARK
-   * Uses the full Arvington logo SVG.
-   * It stays fixed behind the website content while scrolling.
-   */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("/images/brand/arvington-logo-full.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 80vw auto;
-    opacity: 0.2;
-    pointer-events: none;
-    z-index: 0;
-  }
-
   #root {
     position: relative;
-    z-index: 1;
   }
 
   ::selection {
     background-color: var(--color-gold);
-    color: var(--color-paper);
+    color: #fff;
   }
 
   h1,
@@ -64,7 +59,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    color: var(--color-navy);
+    color: var(--color-ink);
     letter-spacing: 0;
   }
 
@@ -77,13 +72,13 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-navy-light);
+    background: var(--color-gold);
     border-radius: 0;
     border: 2px solid var(--color-pale);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-gold);
+    background: var(--color-navy);
   }
 
   :focus-visible {
@@ -92,19 +87,68 @@
   }
 }
 
+/* Headings are bold throughout, as on KEBS (beats per-page font-medium). */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+}
+
+/* Accent colours that would vanish on a blue band switch to a light sky blue. */
+.bg-navy .text-gold,
+.bg-navy-light .text-gold,
+.bg-ink .text-gold,
+.bg-footer .text-gold {
+  color: var(--color-sky);
+}
+.bg-navy .bg-gold,
+.bg-navy-light .bg-gold,
+.bg-ink .bg-gold {
+  background-color: var(--color-sky);
+  color: var(--color-ink);
+}
+.bg-navy [class*="border-gold"],
+.bg-navy-light [class*="border-gold"],
+.bg-ink [class*="border-gold"] {
+  border-color: rgba(156, 203, 255, 0.4);
+}
+.bg-navy h1,
+.bg-navy h2,
+.bg-navy h3,
+.bg-navy h4,
+.bg-navy-light h1,
+.bg-navy-light h2,
+.bg-navy-light h3,
+.bg-navy-light h4,
+.bg-ink h1,
+.bg-ink h2,
+.bg-ink h3,
+.bg-ink h4 {
+  color: #fff;
+}
+
+/* Buttons: KEBS uses fully rounded pills. */
+a.inline-flex[class*="bg-"],
+a.inline-flex[class*="border"],
+button[type="submit"],
+button[class*="bg-navy"],
+button[class*="bg-gold"] {
+  border-radius: 9999px;
+}
+
 @layer utilities {
   .text-justify-pretty {
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
     hyphens: none;
   }
 
   .eyebrow {
     font-family: var(--font-mono);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-size: 0.76rem;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
   }
 
   .rule-thin {
@@ -121,12 +165,75 @@
     padding-right: 1.5rem;
   }
 
+  /* KEBS signature: big rounded bottom-right corner on hero / banner blocks */
+  .corner-br {
+    border-bottom-right-radius: clamp(56px, 9vw, 140px);
+  }
+
+  /* Primary pill button (solid blue) and its light variant for blue bands */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 9999px;
+    background-color: var(--color-gold);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1;
+    padding: 1.05rem 1.6rem;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .btn-pill:hover {
+    background-color: var(--color-navy);
+  }
+  .btn-pill--light {
+    background-color: #fff;
+    color: var(--color-gold);
+  }
+  .btn-pill--light:hover {
+    background-color: var(--color-sky);
+    color: var(--color-ink);
+  }
+
   @media (min-width: 1024px) {
     .container-institutional {
       padding-left: 4rem;
       padding-right: 4rem;
     }
   }
+}
+
+/* ---------- Accessibility modes (toggled from the floating panel) ---------- */
+html.a11y-text-lg { font-size: 112.5%; }
+html.a11y-text-xl { font-size: 125%; }
+html.a11y-dyslexia body,
+html.a11y-dyslexia body * {
+  font-family: "Comic Sans MS", "Trebuchet MS", Verdana, sans-serif !important;
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+}
+html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; }
+html.a11y-contrast body { background: #000 !important; color: #fff !important; }
+html.a11y-contrast main, html.a11y-contrast section, html.a11y-contrast header,
+html.a11y-contrast footer, html.a11y-contrast article, html.a11y-contrast div[class*="bg-"] {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+html.a11y-contrast h1, html.a11y-contrast h2, html.a11y-contrast h3, html.a11y-contrast h4,
+html.a11y-contrast p, html.a11y-contrast li, html.a11y-contrast span, html.a11y-contrast a {
+  color: #fff !important;
+}
+html.a11y-contrast a { text-decoration: underline; }
+html.a11y-contrast img { filter: grayscale(1) contrast(1.1); }
+html.a11y-nomotion *,
+html.a11y-nomotion *::before,
+html.a11y-nomotion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

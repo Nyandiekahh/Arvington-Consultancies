@@ -31,7 +31,7 @@ export default function StatCounter({ value, suffix = '', label, duration = 1.6 
       transition={{ duration: 0.6 }}
       className="flex flex-col"
     >
-      <span className="font-display text-4xl md:text-5xl text-navy tabular-nums">
+      <span className="font-display text-4xl md:text-5xl text-ink tabular-nums">
         {display}
         {suffix}
       </span>

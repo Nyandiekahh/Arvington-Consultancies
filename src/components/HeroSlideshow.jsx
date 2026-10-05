@@ -4,6 +4,10 @@ import useReducedMotion from '../hooks/useReducedMotion'
 
 const DEFAULT_INTERVAL = 6500
 
+/*
+ * Full-bleed background slider. Controls follow the KEBS homepage:
+ * numbered round pagination (1 2 3 …) plus previous / next arrows.
+ */
 export default function HeroSlideshow({
   images,
   interval = DEFAULT_INTERVAL,
@@ -15,10 +19,7 @@ export default function HeroSlideshow({
   const goTo = useCallback(
     (i) => {
       if (!images || images.length === 0) return
-
-      const nextIndex =
-        ((i % images.length) + images.length) % images.length
-
+      const nextIndex = ((i % images.length) + images.length) % images.length
       setIndex(nextIndex)
     },
     [images]
@@ -26,29 +27,18 @@ export default function HeroSlideshow({
 
   useEffect(() => {
     if (!images || images.length === 0) return
-
     onSlideChange?.(index)
   }, [index, images, onSlideChange])
 
   useEffect(() => {
-    if (
-      prefersReducedMotion ||
-      !images ||
-      images.length <= 1
-    ) {
-      return
-    }
-
+    if (prefersReducedMotion || !images || images.length <= 1) return
     const id = setInterval(() => {
       setIndex((current) => (current + 1) % images.length)
     }, interval)
-
     return () => clearInterval(id)
   }, [images, interval, prefersReducedMotion])
 
-  if (!images || images.length === 0) {
-    return null
-  }
+  if (!images || images.length === 0) return null
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -63,9 +53,7 @@ export default function HeroSlideshow({
             ease: 'easeInOut',
           }}
           className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('${images[index].src}')`,
-          }}
+          style={{ backgroundImage: `url('${images[index].src}')` }}
           role="img"
           aria-label={images[index].alt || ''}
         />
@@ -73,64 +61,43 @@ export default function HeroSlideshow({
 
       {images.length > 1 && (
         <>
-          {/* Previous */}
           <button
             onClick={() => goTo(index - 1)}
             aria-label="Previous slide"
-            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-10 p-2 text-paper/60 hover:text-paper transition-colors duration-200"
+            className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 z-10 h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm hover:bg-white hover:text-gold transition-colors duration-200"
           >
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M15 6l-6 6 6 6"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
-          {/* Next */}
           <button
             onClick={() => goTo(index + 1)}
             aria-label="Next slide"
-            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-10 p-2 text-paper/60 hover:text-paper transition-colors duration-200"
+            className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 z-10 h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm hover:bg-white hover:text-gold transition-colors duration-200"
           >
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M9 6l6 6-6 6"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
-          {/* Slide indicators */}
-          <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+          {/* Numbered pagination */}
+          <div className="absolute bottom-6 right-6 md:right-12 z-10 flex items-center gap-2" role="tablist" aria-label="Slides">
             {images.map((img, i) => (
               <button
                 key={img.src}
                 onClick={() => goTo(i)}
+                role="tab"
                 aria-label={`Show slide ${i + 1}`}
-                aria-current={i === index}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                aria-selected={i === index}
+                className={`h-9 w-9 rounded-full text-sm font-bold transition-colors duration-200 ${
                   i === index
-                    ? 'w-8 bg-paper'
-                    : 'w-1.5 bg-paper/40 hover:bg-paper/70'
+                    ? 'bg-gold text-white'
+                    : 'bg-white/85 text-ink hover:bg-white'
                 }`}
-              />
+              >
+                {i + 1}
+              </button>
             ))}
           </div>
         </>

@@ -37,7 +37,7 @@ export default function Preloader({ onComplete }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -14 }}
                     transition={{ duration: 0.28, ease: 'easeOut' }}
-                    className="eyebrow text-navy/60 text-sm tracking-[0.35em]"
+                    className="eyebrow text-ink/60 text-sm tracking-[0.35em]"
                   >
                     {WORDS[index]}
                   </motion.span>
@@ -47,7 +47,7 @@ export default function Preloader({ onComplete }) {
                     initial={{ opacity: 0, letterSpacing: '0.5em' }}
                     animate={{ opacity: 1, letterSpacing: '0.08em' }}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="font-display text-3xl md:text-4xl text-navy"
+                    className="font-display text-3xl md:text-4xl text-ink"
                   >
                     ARVINGTON
                   </motion.span>

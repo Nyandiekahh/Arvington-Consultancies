@@ -30,19 +30,19 @@ export default function Sectors() {
             >
               <Reveal direction={i % 2 === 0 ? 'right' : 'left'}>
                 <span className="font-mono text-xs text-gold">{String(i + 1).padStart(2, '0')} / {String(sectors.length).padStart(2, '0')}</span>
-                <h2 className="font-display text-3xl md:text-4xl text-navy mt-5 mb-6 leading-tight">{sector.name}</h2>
+                <h2 className="font-display text-3xl md:text-4xl text-ink mt-5 mb-6 leading-tight">{sector.name}</h2>
                 <p className="text-charcoal-soft leading-relaxed text-justify-pretty mb-7">{sector.description}</p>
-                <p className="eyebrow text-navy/50 mb-3">Related Consulting Verticals</p>
+                <p className="eyebrow text-ink/50 mb-3">Related Consulting Verticals</p>
                 <div className="flex flex-wrap gap-2 mb-7">
                   {sector.relatedVerticals.map((v) => (
-                    <span key={v} className="text-xs px-3 py-1.5 bg-pale text-navy/80 border border-navy/5">
+                    <span key={v} className="text-xs px-3 py-1.5 bg-pale text-ink/80 border border-navy/5">
                       {v}
                     </span>
                   ))}
                 </div>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
+                  className="inline-flex items-center gap-2 text-ink border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
                 >
                   Discuss This Sector <span aria-hidden="true">&rarr;</span>
                 </Link>

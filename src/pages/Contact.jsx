@@ -63,9 +63,9 @@ const STEPS = [
 ]
 
 const inputClass =
-  'w-full bg-transparent border-b border-navy/20 focus:border-gold px-0 py-3 text-navy placeholder:text-charcoal-soft/50 outline-none transition-colors duration-300'
+  'w-full bg-transparent border-b border-navy/20 focus:border-gold px-0 py-3 text-ink placeholder:text-charcoal-soft/50 outline-none transition-colors duration-300'
 
-const labelClass = 'eyebrow text-navy/60 mb-2 block'
+const labelClass = 'eyebrow text-ink/60 mb-2 block'
 
 const initialForm = {
   fullName: '',
@@ -183,7 +183,7 @@ ${form.howHeard || 'Not specified'}
             <div className="lg:sticky lg:top-32 flex flex-col gap-10">
               <div>
                 <p className="eyebrow text-gold mb-3">Correspondence</p>
-                <p className="text-navy text-lg">0719729569</p>
+                <p className="text-ink text-lg">0719729569</p>
               </div>
 
               <div>
@@ -216,14 +216,14 @@ ${form.howHeard || 'Not specified'}
                 className="border border-navy/15 p-8 hover:border-gold hover:bg-pale/40 transition-all duration-300"
               >
                 <p className="eyebrow text-gold mb-3">Direct Contact</p>
-                <h2 className="font-display text-2xl text-navy mb-3">
+                <h2 className="font-display text-2xl text-ink mb-3">
                   Talk to One of Us
                 </h2>
                 <p className="text-charcoal-soft leading-relaxed mb-6">
                   Have a quick question or prefer to speak directly with a member of the
                   Arvington team? Start a conversation with us on WhatsApp.
                 </p>
-                <span className="text-navy text-sm uppercase tracking-wide font-medium">
+                <span className="text-ink text-sm uppercase tracking-wide font-medium">
                   WhatsApp 0719729569 →
                 </span>
               </a>
@@ -235,7 +235,7 @@ ${form.howHeard || 'Not specified'}
                 className="border border-navy/15 p-8 hover:border-gold hover:bg-pale/40 transition-all duration-300"
               >
                 <p className="eyebrow text-gold mb-3">Detailed Enquiry</p>
-                <h2 className="font-display text-2xl text-navy mb-3">
+                <h2 className="font-display text-2xl text-ink mb-3">
                   Submit a Consultation Request
                 </h2>
                 <p className="text-charcoal-soft leading-relaxed mb-6">
@@ -243,7 +243,7 @@ ${form.howHeard || 'Not specified'}
                   consultation form and provide the information needed for our team to review
                   your enquiry.
                 </p>
-                <span className="text-navy text-sm uppercase tracking-wide font-medium">
+                <span className="text-ink text-sm uppercase tracking-wide font-medium">
                   Open Consultation Form →
                 </span>
               </a>
@@ -259,7 +259,7 @@ ${form.howHeard || 'Not specified'}
                   className="border border-gold/40 bg-pale/60 p-10 md:p-14"
                 >
                   <span className="eyebrow text-gold">Request Received</span>
-                  <h2 className="font-display text-2xl md:text-3xl text-navy mt-4 mb-5">
+                  <h2 className="font-display text-2xl md:text-3xl text-ink mt-4 mb-5">
                     Thank You for Contacting Arvington Ltd.
                   </h2>
                   <p className="text-charcoal-soft leading-relaxed text-justify-pretty">
@@ -292,7 +292,7 @@ ${form.howHeard || 'Not specified'}
                             step === i + 1
                               ? 'bg-navy text-paper border-navy'
                               : step > i + 1
-                                ? 'bg-gold/20 text-navy border-gold'
+                                ? 'bg-gold/20 text-ink border-gold'
                                 : 'border-navy/20 text-charcoal-soft/60'
                           }`}
                         >
@@ -391,7 +391,7 @@ ${form.howHeard || 'Not specified'}
                                 : String(i + 1).padStart(2, '0')}
                             </span>
 
-                            <p className="text-sm text-navy font-medium mt-1 leading-snug">
+                            <p className="text-sm text-ink font-medium mt-1 leading-snug">
                               {opt.label}
                             </p>
 
@@ -542,14 +542,14 @@ ${form.howHeard || 'Not specified'}
                       </div>
 
                       <div className="border border-navy/10 bg-pale/50 p-6">
-                        <p className="eyebrow text-navy/50 mb-4">
+                        <p className="eyebrow text-ink/50 mb-4">
                           Review Your Request
                         </p>
 
                         <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
                           <div>
                             <dt className="text-charcoal-soft/60">Name</dt>
-                            <dd className="text-navy">
+                            <dd className="text-ink">
                               {form.fullName || '—'}
                             </dd>
                           </div>
@@ -558,7 +558,7 @@ ${form.howHeard || 'Not specified'}
                             <dt className="text-charcoal-soft/60">
                               Organisation
                             </dt>
-                            <dd className="text-navy">
+                            <dd className="text-ink">
                               {form.organisation || '—'}
                             </dd>
                           </div>
@@ -567,7 +567,7 @@ ${form.howHeard || 'Not specified'}
                             <dt className="text-charcoal-soft/60">
                               Consulting Vertical
                             </dt>
-                            <dd className="text-navy">
+                            <dd className="text-ink">
                               {verticalOptions.find(
                                 (o) => o.id === form.vertical
                               )?.label || '—'}
@@ -578,7 +578,7 @@ ${form.howHeard || 'Not specified'}
                             <dt className="text-charcoal-soft/60">
                               Project Stage
                             </dt>
-                            <dd className="text-navy">
+                            <dd className="text-ink">
                               {form.stage || '—'}
                             </dd>
                           </div>
@@ -587,7 +587,7 @@ ${form.howHeard || 'Not specified'}
                             <dt className="text-charcoal-soft/60">
                               Preferred Mode
                             </dt>
-                            <dd className="text-navy">
+                            <dd className="text-ink">
                               {form.mode || '—'}
                             </dd>
                           </div>
@@ -596,7 +596,7 @@ ${form.howHeard || 'Not specified'}
                             <dt className="text-charcoal-soft/60">
                               Engagement Types
                             </dt>
-                            <dd className="text-navy">
+                            <dd className="text-ink">
                               {form.engagementSelections.join(', ') || '—'}
                             </dd>
                           </div>
@@ -610,7 +610,7 @@ ${form.howHeard || 'Not specified'}
                       <button
                         type="button"
                         onClick={back}
-                        className="inline-flex items-center gap-2 text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
+                        className="inline-flex items-center gap-2 text-ink border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
                       >
                         &larr; Back
                       </button>

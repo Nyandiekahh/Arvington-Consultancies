@@ -73,7 +73,7 @@ export default function About() {
                   Our Purpose
                 </span>
 
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-navy mt-5 mb-7 leading-tight">
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-ink mt-5 mb-7 leading-tight">
                   To Shape Institutions Capable of What the Future Demands.
                 </h2>
 
@@ -103,7 +103,7 @@ export default function About() {
                 </div>
 
                 <div className="mt-8 border-l-2 border-gold pl-6">
-                  <p className="font-display text-navy text-xl md:text-2xl leading-snug">
+                  <p className="font-display text-ink text-xl md:text-2xl leading-snug">
                     We turn ambition into capability, and capability into
                     enduring consequence.
                   </p>
@@ -190,7 +190,7 @@ export default function About() {
             <Reveal direction="up" delay={0.1}>
               <div className="relative bg-paper p-8 md:p-10 h-full border border-navy/10 overflow-hidden">
 
-                <span className="absolute right-5 top-0 font-display text-[8rem] leading-none text-navy/[0.035]">
+                <span className="absolute right-5 top-0 font-display text-[8rem] leading-none text-ink/[0.035]">
                   02
                 </span>
 
@@ -198,7 +198,7 @@ export default function About() {
                   Our Mission
                 </span>
 
-                <h3 className="font-display text-2xl text-navy mt-5 mb-5">
+                <h3 className="font-display text-2xl text-ink mt-5 mb-5">
                   Better decisions. Stronger capability.
                 </h3>
 
@@ -228,7 +228,7 @@ export default function About() {
                     0{i + 1}
                   </span>
 
-                  <h4 className="font-display text-xl text-navy group-hover:text-paper mt-5 mb-3 transition-colors duration-300">
+                  <h4 className="font-display text-xl text-ink group-hover:text-paper mt-5 mb-3 transition-colors duration-300">
                     {value.name}
                   </h4>
 
@@ -290,7 +290,7 @@ export default function About() {
                   className={`relative min-h-[290px] p-8 md:p-9 overflow-hidden ${
                     i === 1
                       ? 'bg-navy text-paper'
-                      : 'bg-[#F0ECE3] text-navy'
+                      : 'bg-[#F0ECE3] text-ink'
                   }`}
                 >
 
@@ -298,7 +298,7 @@ export default function About() {
                     className={`absolute -right-3 -top-8 font-display text-[8rem] leading-none ${
                       i === 1
                         ? 'text-paper/[0.04]'
-                        : 'text-navy/[0.04]'
+                        : 'text-ink/[0.04]'
                     }`}
                   >
                     {item.number}
@@ -312,7 +312,7 @@ export default function About() {
 
                     <h3
                       className={`font-display text-xl md:text-2xl mt-6 mb-5 ${
-                        i === 1 ? 'text-paper' : 'text-navy'
+                        i === 1 ? 'text-paper' : 'text-ink'
                       }`}
                     >
                       {item.title}
@@ -428,7 +428,7 @@ export default function About() {
                     {String(i + 1).padStart(2, '0')}
                   </span>
 
-                  <h3 className="font-display text-lg mt-5 mb-3 text-navy group-hover:text-paper transition-colors duration-300">
+                  <h3 className="font-display text-lg mt-5 mb-3 text-ink group-hover:text-paper transition-colors duration-300">
                     {pillar.name}
                   </h3>
 
@@ -503,7 +503,7 @@ export default function About() {
               >
                 <div className="relative bg-[#F0ECE3] p-8 md:p-9 min-h-[190px] group overflow-hidden">
 
-                  <span className="absolute right-5 top-2 font-display text-7xl text-navy/[0.035]">
+                  <span className="absolute right-5 top-2 font-display text-7xl text-ink/[0.035]">
                     0{i + 1}
                   </span>
 
@@ -513,7 +513,7 @@ export default function About() {
                       0{i + 1}
                     </span>
 
-                    <h3 className="font-display text-xl text-navy mt-4 mb-3">
+                    <h3 className="font-display text-xl text-ink mt-4 mb-3">
                       {item.name}
                     </h3>
 
@@ -534,7 +534,7 @@ export default function About() {
           <div className="mt-10">
             <Link
               to="/capabilities"
-              className="inline-flex items-center text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm font-medium"
+              className="inline-flex items-center text-ink border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm font-medium"
             >
               Explore all capabilities
 
@@ -588,7 +588,7 @@ export default function About() {
                     0{i + 1}
                   </span>
 
-                  <h3 className="font-display text-xl text-navy mt-5 mb-4">
+                  <h3 className="font-display text-xl text-ink mt-5 mb-4">
                     {item.name}
                   </h3>
 
@@ -700,7 +700,7 @@ export default function About() {
                     {entry.category}
                   </p>
 
-                  <h3 className="font-display text-xl text-navy group-hover:text-paper mb-3 leading-snug transition-colors duration-300">
+                  <h3 className="font-display text-xl text-ink group-hover:text-paper mb-3 leading-snug transition-colors duration-300">
                     {entry.title}
                   </h3>
 

@@ -22,7 +22,7 @@ export default function SectionHeading({
         </Reveal>
       )}
       <Reveal direction="up" delay={0.08} duration={0.7}>
-        <h2 className={`font-display font-medium leading-[1.08] ${titleSize} ${light ? 'text-paper' : 'text-navy'}`}>
+        <h2 className={`font-display font-medium leading-[1.08] ${titleSize} ${light ? 'text-paper' : 'text-ink'}`}>
           {title}
         </h2>
       </Reveal>

@@ -44,13 +44,13 @@ function ExecCard({ exec, index }) {
         <button onClick={() => setExpanded((e) => !e)} className="w-full text-left p-7" aria-expanded={expanded}>
           <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(exec.name)} alt={exec.name} />
           <span className="font-mono text-xs text-gold">{exec.code}</span>
-          <h3 className="font-display text-lg text-navy mt-2 mb-0.5">
+          <h3 className="font-display text-lg text-ink mt-2 mb-0.5">
             {exec.name}
             {exec.credentials ? `, ${exec.credentials}` : ''}
           </h3>
           <p className="text-sm text-charcoal-soft">{exec.title}</p>
           {exec.tagline && <p className="text-xs text-gold/90 eyebrow tracking-normal normal-case font-medium mt-3">{exec.tagline}</p>}
-          <span className="inline-block mt-4 text-xs uppercase tracking-wide font-medium text-navy border-b border-navy/30">
+          <span className="inline-block mt-4 text-xs uppercase tracking-wide font-medium text-ink border-b border-navy/30">
             {expanded ? 'Hide Full Profile' : 'Read Full Profile'}
           </span>
         </button>
@@ -111,7 +111,7 @@ export default function Leadership() {
                     className="p-7 h-full border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28"
                   >
                     <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(member.name)} alt={member.name} />
-                    <h3 className="font-display text-lg text-navy">
+                    <h3 className="font-display text-lg text-ink">
                       {member.name}
                       {member.credentials ? `, ${member.credentials}` : ''}
                     </h3>
@@ -179,7 +179,7 @@ export default function Leadership() {
                       alt={v.directorName}
                     />
                     <span className="font-mono text-xs text-gold">{String(v.id).padStart(2, '0')}</span>
-                    <h3 className={`font-display text-lg mt-2 mb-0.5 leading-snug ${v.directorName ? 'text-navy' : 'text-navy/50'}`}>
+                    <h3 className={`font-display text-lg mt-2 mb-0.5 leading-snug ${v.directorName ? 'text-ink' : 'text-ink/50'}`}>
                       {v.directorName ? `${v.directorName}${v.directorCredentials ? `, ${v.directorCredentials}` : ''}` : 'To Be Appointed'}
                     </h3>
                     <p className="text-sm text-charcoal-soft eyebrow tracking-normal normal-case font-normal">

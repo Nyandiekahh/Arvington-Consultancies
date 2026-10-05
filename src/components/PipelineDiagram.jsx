@@ -53,7 +53,7 @@ export default function PipelineDiagram({ orientation = 'horizontal' }) {
             <div className="w-11 h-11 rounded-full border-2 border-navy bg-paper flex items-center justify-center relative z-10 mb-4">
               <span className="w-2 h-2 rounded-full bg-gold" />
             </div>
-            <span className="font-display text-base md:text-lg text-navy mb-1">{stage.label}</span>
+            <span className="font-display text-base md:text-lg text-ink mb-1">{stage.label}</span>
             <span className="eyebrow text-charcoal-soft text-[0.62rem] tracking-widest">{stage.note}</span>
           </div>
         ))}

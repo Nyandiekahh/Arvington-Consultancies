@@ -75,7 +75,7 @@ export default function SearchOverlay({ open, onClose }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 px-6 py-5 border-b border-navy/10">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-navy/50 shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-ink/50 shrink-0">
                 <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.6" />
                 <path d="M20 20L16.5 16.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
@@ -85,13 +85,13 @@ export default function SearchOverlay({ open, onClose }) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search people, verticals, capabilities, insights…"
-                className="flex-1 bg-transparent outline-none text-navy placeholder:text-charcoal-soft/60 text-base md:text-lg font-body"
+                className="flex-1 bg-transparent outline-none text-ink placeholder:text-charcoal-soft/60 text-base md:text-lg font-body"
                 aria-label="Search Arvington"
               />
               <button
                 onClick={onClose}
                 aria-label="Close search"
-                className="text-charcoal-soft hover:text-navy transition-colors duration-200 text-xs uppercase tracking-wide eyebrow"
+                className="text-charcoal-soft hover:text-ink transition-colors duration-200 text-xs uppercase tracking-wide eyebrow"
               >
                 Esc
               </button>
@@ -120,7 +120,7 @@ export default function SearchOverlay({ open, onClose }) {
                         }`}
                       >
                         <span className="min-w-0">
-                          <span className="block text-navy font-display text-base truncate">{result.title}</span>
+                          <span className="block text-ink font-display text-base truncate">{result.title}</span>
                           {result.subtitle && (
                             <span className="block text-xs text-charcoal-soft mt-0.5 truncate">{result.subtitle}</span>
                           )}

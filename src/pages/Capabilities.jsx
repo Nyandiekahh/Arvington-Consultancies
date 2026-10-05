@@ -36,16 +36,16 @@ export default function Capabilities() {
             >
               <Reveal direction={i % 2 === 0 ? 'right' : 'left'}>
                 <span className="font-mono text-xs text-gold">{String(i + 1).padStart(2, '0')} / 08</span>
-                <h2 className="font-display text-3xl md:text-4xl text-navy mt-5 mb-3 leading-tight">{cap.name}</h2>
+                <h2 className="font-display text-3xl md:text-4xl text-ink mt-5 mb-3 leading-tight">{cap.name}</h2>
                 <p className="text-charcoal-soft italic mb-6">{cap.short}</p>
                 <p className="text-charcoal-soft leading-relaxed text-justify-pretty">{cap.description}</p>
                 {cap.strapline && (
-                  <p className="mt-5 text-navy font-display text-lg leading-snug">{cap.strapline}</p>
+                  <p className="mt-5 text-ink font-display text-lg leading-snug">{cap.strapline}</p>
                 )}
 
                 {cap.subServices && cap.subServices.length > 0 && (
                   <div className="mt-8">
-                    <p className="eyebrow text-navy/50 mb-3">What This Covers</p>
+                    <p className="eyebrow text-ink/50 mb-3">What This Covers</p>
                     <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
                       {cap.subServices.map((service) => (
                         <li key={service} className="text-sm text-charcoal-soft flex items-start gap-2">
@@ -59,7 +59,7 @@ export default function Capabilities() {
 
                 {cap.relatedVerticalIds && cap.relatedVerticalIds.length > 0 && (
                   <div className="mt-8">
-                    <p className="eyebrow text-navy/50 mb-3">Related Consulting Verticals</p>
+                    <p className="eyebrow text-ink/50 mb-3">Related Consulting Verticals</p>
                     <div className="flex flex-wrap gap-2">
                       {cap.relatedVerticalIds.map((id) => {
                         const v = verticalById(id)
@@ -68,7 +68,7 @@ export default function Capabilities() {
                           <Link
                             key={id}
                             to={`/consulting-verticals#vertical-${id}`}
-                            className="text-xs px-3 py-1.5 border border-navy/15 text-navy/80 hover:border-gold hover:text-gold transition-colors duration-200"
+                            className="text-xs px-3 py-1.5 border border-navy/15 text-ink/80 hover:border-gold hover:text-gold transition-colors duration-200"
                           >
                             {v.name}
                           </Link>

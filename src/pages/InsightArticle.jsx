@@ -20,9 +20,9 @@ export default function InsightArticle() {
   if (!insight) {
     return (
       <div className="container-institutional pt-40 pb-32 text-center">
-        <h1 className="font-display text-3xl text-navy mb-4">Article Not Found</h1>
+        <h1 className="font-display text-3xl text-ink mb-4">Article Not Found</h1>
         <p className="text-charcoal-soft mb-8">This piece may have been moved or is no longer published.</p>
-        <Link to="/insights" className="text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold">
+        <Link to="/insights" className="text-ink border-b border-navy/30 pb-1 hover:border-gold hover:text-gold">
           Return to Insights
         </Link>
       </div>
@@ -41,7 +41,7 @@ export default function InsightArticle() {
             {insight.publicationType && (
               <p className="text-xs uppercase tracking-widest text-charcoal-soft/60 mb-4">{insight.publicationType}</p>
             )}
-            <h1 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl leading-[1.12] text-navy">
+            <h1 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl leading-[1.12] text-ink">
               {insight.title}
             </h1>
             <p className="mt-6 text-lg text-charcoal-soft leading-relaxed text-justify-pretty">{insight.dek}</p>
@@ -50,7 +50,7 @@ export default function InsightArticle() {
               <div className="mt-8 flex items-center gap-4">
                 <ImagePlaceholder label="Author" ratio="aspect-square" className="w-14 h-14 shrink-0" src={personPhoto(insight.author)} alt={insight.author} />
                 <div>
-                  <p className="text-navy font-medium">{insight.author}</p>
+                  <p className="text-ink font-medium">{insight.author}</p>
                   <p className="text-xs text-charcoal-soft/70">{insight.authorRole}</p>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function InsightArticle() {
             <p
               key={i}
               className={`text-charcoal leading-[1.85] text-justify-pretty mb-7 text-[1.05rem] ${
-                i === 0 ? 'first-letter:font-display first-letter:text-6xl first-letter:text-navy first-letter:float-left first-letter:pr-3 first-letter:leading-[0.85] first-letter:mt-1' : ''
+                i === 0 ? 'first-letter:font-display first-letter:text-6xl first-letter:text-ink first-letter:float-left first-letter:pr-3 first-letter:leading-[0.85] first-letter:mt-1' : ''
               }`}
             >
               {para}
@@ -98,7 +98,7 @@ export default function InsightArticle() {
         <div className="mt-16 pt-10 border-t border-navy/10 flex items-center justify-between flex-wrap gap-6">
           <Link
             to="/insights"
-            className="inline-flex items-center gap-2 text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
+            className="inline-flex items-center gap-2 text-ink border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 text-sm uppercase tracking-wide font-medium"
           >
             &larr; All Insights
           </Link>

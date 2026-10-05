@@ -79,7 +79,7 @@ export default function Careers() {
                 <div className="flex gap-5">
                   <span className="font-display text-3xl text-gold/70 shrink-0">{String(i + 1).padStart(2, '0')}</span>
                   <div>
-                    <h3 className="font-display text-lg text-navy mb-2">{v.title}</h3>
+                    <h3 className="font-display text-lg text-ink mb-2">{v.title}</h3>
                     <p className="text-charcoal-soft leading-relaxed text-justify-pretty">{v.text}</p>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export default function Careers() {
               <Reveal key={role.title} direction="up" delay={i * 0.05}>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 group">
                   <div>
-                    <h3 className="font-display text-lg md:text-xl text-navy group-hover:text-navy/70 transition-colors">
+                    <h3 className="font-display text-lg md:text-xl text-ink group-hover:text-ink/70 transition-colors">
                       {role.title}
                     </h3>
                     <p className="text-sm text-charcoal-soft mt-1">
@@ -110,7 +110,7 @@ export default function Careers() {
                   </div>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 text-sm uppercase tracking-wide font-medium text-navy border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 whitespace-nowrap"
+                    className="inline-flex items-center gap-2 text-sm uppercase tracking-wide font-medium text-ink border-b border-navy/30 pb-1 hover:border-gold hover:text-gold transition-colors duration-300 whitespace-nowrap"
                   >
                     Apply <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -125,7 +125,7 @@ export default function Careers() {
         <div className="container-institutional max-w-2xl mx-auto">
           <Reveal direction="up">
             <span className="eyebrow text-gold">General Applications</span>
-            <h2 className="font-display text-3xl md:text-4xl text-navy mt-5 mb-6 leading-tight">
+            <h2 className="font-display text-3xl md:text-4xl text-ink mt-5 mb-6 leading-tight">
               Bring Your Expertise to Arvington.
             </h2>
             <p className="text-charcoal-soft leading-relaxed text-justify-pretty mb-4">

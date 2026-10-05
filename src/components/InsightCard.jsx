@@ -24,7 +24,7 @@ export default function InsightCard({ insight, index = 0, featured = false }) {
             <span className="text-xs text-charcoal-soft font-mono">{insight.readTime}</span>
           </div>
           <h3
-            className={`font-display text-navy leading-snug group-hover:underline decoration-gold decoration-1 underline-offset-4 transition-all ${
+            className={`font-display text-ink leading-snug group-hover:underline decoration-gold decoration-1 underline-offset-4 transition-all ${
               featured ? 'text-2xl md:text-3xl' : 'text-xl'
             }`}
           >

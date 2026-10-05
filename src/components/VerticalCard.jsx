@@ -37,7 +37,7 @@ export default function VerticalCard({ vertical, index }) {
           {String(vertical.id).padStart(2, '0')}
         </span>
         <div className="flex-1">
-          <h3 className="font-display text-xl md:text-2xl text-navy leading-snug group-hover:text-navy/80 transition-colors">
+          <h3 className="font-display text-xl md:text-2xl text-ink leading-snug group-hover:text-ink/80 transition-colors">
             {vertical.name}
           </h3>
           <p className="text-sm text-charcoal-soft mt-2 eyebrow normal-case tracking-normal font-normal">
@@ -47,7 +47,7 @@ export default function VerticalCard({ vertical, index }) {
         <motion.span
           animate={{ rotate: expanded ? 45 : 0 }}
           transition={{ duration: 0.3 }}
-          className="text-2xl text-navy/40 shrink-0 mt-1"
+          className="text-2xl text-ink/40 shrink-0 mt-1"
           aria-hidden="true"
         >
           +
@@ -71,7 +71,7 @@ export default function VerticalCard({ vertical, index }) {
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
-              <p className="eyebrow text-navy/50 mb-3">Capabilities</p>
+              <p className="eyebrow text-ink/50 mb-3">Capabilities</p>
               <ul className="flex flex-col gap-2">
                 {vertical.capabilities.map((cap) => (
                   <li key={cap} className="text-sm text-charcoal-soft flex gap-2">
@@ -83,20 +83,20 @@ export default function VerticalCard({ vertical, index }) {
             </div>
             <div className="flex flex-col gap-8">
               <div>
-                <p className="eyebrow text-navy/50 mb-3">Industries</p>
+                <p className="eyebrow text-ink/50 mb-3">Industries</p>
                 <div className="flex flex-wrap gap-2">
                   {vertical.industries.map((ind) => (
-                    <span key={ind} className="text-xs px-3 py-1.5 bg-pale text-navy/80 border border-navy/5">
+                    <span key={ind} className="text-xs px-3 py-1.5 bg-pale text-ink/80 border border-navy/5">
                       {ind}
                     </span>
                   ))}
                 </div>
               </div>
               <div>
-                <p className="eyebrow text-navy/50 mb-3">Engagement Models</p>
+                <p className="eyebrow text-ink/50 mb-3">Engagement Models</p>
                 <div className="flex flex-wrap gap-2">
                   {vertical.engagementModels.map((model) => (
-                    <span key={model} className="text-xs px-3 py-1.5 border border-gold/40 text-navy/80">
+                    <span key={model} className="text-xs px-3 py-1.5 border border-gold/40 text-ink/80">
                       {model}
                     </span>
                   ))}
@@ -110,7 +110,7 @@ export default function VerticalCard({ vertical, index }) {
               <>
                 <ImagePlaceholder label="Director Photo" ratio="aspect-square" className="w-full sm:w-72 md:w-80 shrink-0" src={personPhoto(vertical.directorName)} alt={vertical.directorName} />
                 <div className="flex-1">
-                  <p className="font-display text-lg text-navy mb-0.5">
+                  <p className="font-display text-lg text-ink mb-0.5">
                     {vertical.directorName}
                     {vertical.directorCredentials ? `, ${vertical.directorCredentials}` : ''}
                   </p>
@@ -137,7 +137,7 @@ export default function VerticalCard({ vertical, index }) {
                       href={vertical.directorPortfolio}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 mt-4 text-xs uppercase tracking-wide font-medium text-navy border-b border-navy/30 hover:border-gold hover:text-gold transition-colors duration-300 w-fit"
+                      className="inline-flex items-center gap-2 mt-4 text-xs uppercase tracking-wide font-medium text-ink border-b border-navy/30 hover:border-gold hover:text-gold transition-colors duration-300 w-fit"
                     >
                       View Full Portfolio <span aria-hidden="true">&rarr;</span>
                     </a>
@@ -148,7 +148,7 @@ export default function VerticalCard({ vertical, index }) {
               <>
                 <ImagePlaceholder label="Vacant" ratio="aspect-square" className="w-full sm:w-72 md:w-80 shrink-0 opacity-60" />
                 <div className="flex-1">
-                  <p className="font-display text-lg text-navy/50 mb-0.5">To Be Appointed</p>
+                  <p className="font-display text-lg text-ink/50 mb-0.5">To Be Appointed</p>
                   <p className="eyebrow text-charcoal-soft mb-3 tracking-normal normal-case font-normal">{vertical.director}</p>
                   <p className="text-sm text-charcoal-soft leading-relaxed text-justify-pretty">
                     This vertical is not yet led by a director. If your background fits this practice, we would welcome the conversation.

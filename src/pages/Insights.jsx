@@ -88,7 +88,7 @@ export default function Insights() {
               <p className="text-paper/70 mb-8">{featuredResearch.volumeLabel}</p>
               <Link
                 to={`/insights/${featuredInsight.id}`}
-                className="inline-flex items-center gap-2 border border-gold text-gold px-7 py-3.5 text-sm font-medium uppercase tracking-wide hover:bg-gold hover:text-navy transition-colors duration-300"
+                className="inline-flex items-center gap-2 border border-gold text-gold px-7 py-3.5 text-sm font-medium uppercase tracking-wide hover:bg-gold hover:text-ink transition-colors duration-300"
               >
                 Read Research <span aria-hidden="true">&rarr;</span>
               </Link>
@@ -107,10 +107,10 @@ export default function Insights() {
             {perspectives.map((p, i) => (
               <Reveal key={p.id} direction="up" delay={i * 0.08}>
                 <Link to={p.to} className="block border border-navy/10 bg-paper p-8 h-full hover:border-gold/60 transition-colors duration-300">
-                  <h3 className="font-display text-xl text-navy mb-1">{p.name}</h3>
+                  <h3 className="font-display text-xl text-ink mb-1">{p.name}</h3>
                   <p className="eyebrow text-gold/80 mb-4">{p.strapline}</p>
                   <p className="text-sm text-charcoal-soft leading-relaxed text-justify-pretty mb-6">{p.description}</p>
-                  <span className="text-xs uppercase tracking-wide font-medium text-navy border-b border-navy/30">
+                  <span className="text-xs uppercase tracking-wide font-medium text-ink border-b border-navy/30">
                     Explore Publications &rarr;
                   </span>
                 </Link>
@@ -131,7 +131,7 @@ export default function Insights() {
                 className="flex items-center gap-4 p-4 border border-navy/10 hover:border-gold/60 bg-paper transition-colors duration-200"
               >
                 <span className="font-mono text-xs text-gold shrink-0">{String(v.id).padStart(2, '0')}</span>
-                <span className="text-sm text-navy leading-snug">{v.name}</span>
+                <span className="text-sm text-ink leading-snug">{v.name}</span>
               </Link>
             ))}
           </div>
@@ -145,7 +145,7 @@ export default function Insights() {
             {publicationTypes.map((t, i) => (
               <Reveal key={t.name} direction="up" delay={(i % 4) * 0.06}>
                 <div className="border-t border-gold/40 pt-5">
-                  <h3 className="font-display text-base text-navy mb-2">{t.name}</h3>
+                  <h3 className="font-display text-base text-ink mb-2">{t.name}</h3>
                   <p className="text-sm text-charcoal-soft leading-relaxed text-justify-pretty">{t.description}</p>
                 </div>
               </Reveal>
@@ -167,7 +167,7 @@ export default function Insights() {
                 <div className="border border-navy/10 p-7 h-full">
                   <p className="eyebrow text-gold mb-2">{e.role}</p>
                   <p className="text-sm text-charcoal-soft leading-relaxed mb-4">{e.description}</p>
-                  <p className="font-display text-navy">{e.name}</p>
+                  <p className="font-display text-ink">{e.name}</p>
                   <p className="text-xs text-charcoal-soft/70 mt-0.5">{e.position}</p>
                 </div>
               </Reveal>
@@ -182,7 +182,7 @@ export default function Insights() {
           <div className="mt-14 flex flex-col gap-10">
             {volumesArchive.map((vol) => (
               <div key={vol.volume}>
-                <p className="font-display text-xl text-navy mb-5">{vol.volume}</p>
+                <p className="font-display text-xl text-ink mb-5">{vol.volume}</p>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {vol.issues.map((issue) => (
                     <div key={issue} className="border border-navy/10 bg-paper px-5 py-4 text-sm text-charcoal-soft">
@@ -207,7 +207,7 @@ export default function Insights() {
               multidisciplinary knowledge around consequential questions, connecting research,
               evidence, professional expertise and institutional judgement.
             </p>
-            <p className="font-display text-navy text-lg leading-snug">
+            <p className="font-display text-ink text-lg leading-snug">
               The journal is where Arvington's intellectual work becomes part of the
               institutional record.
             </p>
