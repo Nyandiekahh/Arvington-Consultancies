@@ -5,12 +5,14 @@ export default function ImagePlaceholder({ label = 'Image', ratio = 'aspect-[4/3
 
   if (src && !errored) {
     return (
-      <div className={`relative ${ratio} bg-pale border border-navy/10 overflow-hidden ${className}`}>
+      <div className={`relative ${ratio} bg-pale overflow-hidden ${className}`}>
         <img
           src={src}
           alt={alt || label}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-contain"
+          className={`absolute inset-0 w-full h-full object-cover ${
+            src.includes('/images/people/') ? 'object-top' : 'object-center'
+          }`}
           onError={() => setErrored(true)}
         />
       </div>
@@ -19,7 +21,7 @@ export default function ImagePlaceholder({ label = 'Image', ratio = 'aspect-[4/3
 
   return (
     <div
-      className={`relative ${ratio} bg-pale border border-navy/10 overflow-hidden flex items-center justify-center group ${className}`}
+      className={`relative ${ratio} bg-pale overflow-hidden flex items-center justify-center group ${className}`}
     >
       <div className="relative flex flex-col items-center gap-2 px-4 text-center">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-ink/30">

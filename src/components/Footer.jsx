@@ -2,13 +2,18 @@ import { Link } from 'react-router-dom'
 import { capabilities } from '../data/capabilities'
 
 const quickLinks = [
-  { label: 'About', to: '/about' },
-  { label: 'Capabilities', to: '/capabilities' },
-  { label: 'Consulting Verticals', to: '/consulting-verticals' },
+  { label: 'Who We Are', to: '/about' },
   { label: 'Leadership', to: '/leadership' },
-  { label: 'Insights', to: '/insights' },
+  { label: 'What We Do', to: '/capabilities' },
+  { label: 'Selected Consulting Experience', to: '/experience' },
+  { label: 'Consulting Verticals', to: '/consulting-verticals' },
   { label: 'Sectors', to: '/sectors' },
+  { label: 'Insights', to: '/insights' },
   { label: 'Careers', to: '/careers' },
+  { label: 'FAQs', to: '/faqs' },
+  { label: 'Partnerships', to: '/partnerships' },
+  { label: 'Request a Proposal', to: '/request-proposal' },
+  { label: 'Executive Consultation', to: '/executive-consultation' },
   { label: 'Contact', to: '/contact' },
 ]
 

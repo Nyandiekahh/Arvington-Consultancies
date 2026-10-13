@@ -15,4 +15,22 @@
   <url><loc>https://arvington-consultancies.vercel.app/insights/building-technical-teams-in-public-sector</loc><priority>0.6</priority></url>
   <url><loc>https://arvington-consultancies.vercel.app/careers</loc><priority>0.6</priority></url>
   <url><loc>https://arvington-consultancies.vercel.app/contact</loc><priority>0.7</priority></url>
+  <url>
+    <loc>https://arvington-consultancies.vercel.app/experience</loc>
+  </url>
+  <url>
+    <loc>https://arvington-consultancies.vercel.app/faqs</loc>
+  </url>
+  <url>
+    <loc>https://arvington-consultancies.vercel.app/partnerships</loc>
+  </url>
+  <url>
+    <loc>https://arvington-consultancies.vercel.app/request-consultancy</loc>
+  </url>
+  <url>
+    <loc>https://arvington-consultancies.vercel.app/request-proposal</loc>
+  </url>
+  <url>
+    <loc>https://arvington-consultancies.vercel.app/executive-consultation</loc>
+  </url>
 </urlset>

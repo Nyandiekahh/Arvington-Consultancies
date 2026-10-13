@@ -108,7 +108,7 @@ export default function VerticalCard({ vertical, index }) {
           <div className="border-t border-navy/8 pt-7 flex flex-col sm:flex-row gap-6">
             {vertical.directorName ? (
               <>
-                <ImagePlaceholder label="Director Photo" ratio="aspect-square" className="w-full sm:w-72 md:w-80 shrink-0" src={personPhoto(vertical.directorName)} alt={vertical.directorName} />
+                <ImagePlaceholder label="Director Photo" ratio="aspect-[4/5] sm:aspect-square" className="w-full sm:w-72 md:w-80 shrink-0" src={personPhoto(vertical.directorName)} alt={vertical.directorName} />
                 <div className="flex-1">
                   <p className="font-display text-lg text-ink mb-0.5">
                     {vertical.directorName}

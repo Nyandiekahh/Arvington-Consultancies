@@ -27,7 +27,71 @@ const engagementTypes = [
   'Project / Programme Advisory',
   'Long-Term Advisory',
   'Multidisciplinary Advisory',
+  'Proposal Request',
+  'Executive Consultation',
+  'Partnership Enquiry',
 ]
+
+const DEFAULT_DESCRIPTION =
+  'Whether the challenge concerns strategy, transformation, investment, analytics, institutional performance, research, technology or a complex multidisciplinary problem, Arvington can assemble the appropriate expertise. Our 20 Consulting Verticals provide specialist depth across the disciplines required to address consequential institutional, commercial, technical and strategic questions.'
+
+// Each Engage Arvington route reuses this form with different framing.
+const PRESETS = {
+  contact: {
+    seoTitle: 'Contact',
+    path: '/contact',
+    eyebrow: 'Engage Arvington',
+    title: 'Discuss an Engagement.',
+    description: DEFAULT_DESCRIPTION,
+    messageTitle: 'NEW ARVINGTON CONSULTATION REQUEST',
+    submitLabel: 'Submit Consultation Request',
+    preselect: [],
+  },
+  consultancy: {
+    seoTitle: 'Request Consultancy',
+    path: '/request-consultancy',
+    eyebrow: 'Engage Arvington',
+    title: 'Request Consultancy.',
+    description:
+      'Tell us about the problem, decision or programme you need support with. The relevant Consulting Vertical will review your request and coordinate the right expertise.',
+    messageTitle: 'NEW ARVINGTON CONSULTANCY REQUEST',
+    submitLabel: 'Submit Consultancy Request',
+    preselect: ['Consultation'],
+  },
+  proposal: {
+    seoTitle: 'Request a Proposal',
+    path: '/request-proposal',
+    eyebrow: 'Engage Arvington',
+    title: 'Request a Proposal.',
+    description:
+      'Share the scope, timeline and outcomes you have in mind and we will prepare a proposal setting out approach, deliverables and team.',
+    messageTitle: 'NEW ARVINGTON PROPOSAL REQUEST',
+    submitLabel: 'Submit Proposal Request',
+    preselect: ['Proposal Request'],
+  },
+  executive: {
+    seoTitle: 'Executive Consultation',
+    path: '/executive-consultation',
+    eyebrow: 'Engage Arvington',
+    title: 'Executive Consultation.',
+    description:
+      'A focused conversation with a member of Arvington\u2019s executive or consulting leadership on a strategic, institutional or board-level question.',
+    messageTitle: 'NEW ARVINGTON EXECUTIVE CONSULTATION REQUEST',
+    submitLabel: 'Request Executive Consultation',
+    preselect: ['Executive Consultation'],
+  },
+  partnership: {
+    seoTitle: 'Partnership Enquiry',
+    path: '/partnership-enquiry',
+    eyebrow: 'Partnerships',
+    title: 'Partnership Enquiry.',
+    description:
+      'Tell us about your organisation and the kind of collaboration you have in mind. We will review the fit and come back to you.',
+    messageTitle: 'NEW ARVINGTON PARTNERSHIP ENQUIRY',
+    submitLabel: 'Submit Partnership Enquiry',
+    preselect: ['Partnership Enquiry'],
+  },
+}
 
 const consultationModes = ['Online Meeting', 'Physical Meeting', 'Telephone Consultation']
 
@@ -83,17 +147,18 @@ const initialForm = {
   howHeard: '',
 }
 
-export default function Contact() {
+export default function Contact({ preset = 'contact' }) {
+  const cfg = PRESETS[preset] || PRESETS.contact
   useSEO({
-    title: 'Contact',
+    title: cfg.seoTitle,
     description:
       'Discuss an engagement with Arvington Ltd. Reach our team to explore strategy, analytics, economics, research, technology or institutional advisory support.',
-    path: '/contact',
+    path: cfg.path,
   })
 
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState(initialForm)
+  const [form, setForm] = useState({ ...initialForm, engagementSelections: cfg.preselect })
 
   const update = (field, value) =>
     setForm((prev) => ({ ...prev, [field]: value }))
@@ -118,7 +183,7 @@ export default function Contact() {
       'Not specified'
 
     const message = `
-*NEW ARVINGTON CONSULTATION REQUEST*
+*${cfg.messageTitle}*
 
 *CONTACT DETAILS*
 Name: ${form.fullName || 'Not provided'}
@@ -171,9 +236,9 @@ ${form.howHeard || 'Not specified'}
   return (
     <div>
       <PageHero
-        eyebrow="Engage Arvington"
-        title="Discuss an Engagement."
-        description="Whether the challenge concerns strategy, transformation, investment, analytics, institutional performance, research, technology or a complex multidisciplinary problem, Arvington can assemble the appropriate expertise. Our 20 Consulting Verticals provide specialist depth across the disciplines required to address consequential institutional, commercial, technical and strategic questions."
+        eyebrow={cfg.eyebrow}
+        title={cfg.title}
+        description={cfg.description}
         tall
       />
 
@@ -210,6 +275,7 @@ ${form.howHeard || 'Not specified'}
           <div className="lg:col-span-8">
             <div className="grid md:grid-cols-2 gap-6 mb-16">
               <a
+                id="whatsapp"
                 href="https://wa.me/254719729569"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -631,7 +697,7 @@ ${form.howHeard || 'Not specified'}
                         type="submit"
                         className="inline-flex items-center gap-2 bg-navy text-paper px-8 py-4 text-sm font-medium uppercase tracking-wide hover:bg-navy-light transition-colors duration-300"
                       >
-                        Submit Consultation Request{' '}
+                        {cfg.submitLabel}{' '}
                         <span aria-hidden="true">&rarr;</span>
                       </button>
                     )}

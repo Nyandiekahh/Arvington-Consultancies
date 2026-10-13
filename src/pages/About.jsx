@@ -4,11 +4,31 @@ import SectionHeading from '../components/SectionHeading'
 import Reveal from '../components/Reveal'
 import PipelineDiagram from '../components/PipelineDiagram'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import { pillars } from '../data/capabilities'
+import { pillars, capabilities } from '../data/capabilities'
+import { verticals, tiers } from '../data/verticals'
 import { csr } from '../data/csr'
 import { governanceCategories } from '../data/governance'
 import { trackRecord } from '../data/trackRecord'
 import useSEO from '../hooks/useSEO'
+
+const EVIDENCE_PRINCIPLES = [
+  {
+    title: 'Start from the question',
+    text: 'Every engagement begins with a clearly framed decision, so the evidence gathered is the evidence that matters.',
+  },
+  {
+    title: 'Use the right method',
+    text: 'Qualitative, quantitative and modelling approaches are chosen for the problem, not for habit.',
+  },
+  {
+    title: 'Show the reasoning',
+    text: 'Assumptions, data sources and limitations are stated openly so clients can test our conclusions.',
+  },
+  {
+    title: 'Stay independent',
+    text: 'Findings follow the evidence, including when they are not the outcome a client hoped for.',
+  },
+]
 
 const VALUES = [
   {
@@ -53,6 +73,39 @@ export default function About() {
         description="Institutions are humanity's most consequential instruments for organising capital, knowledge, authority, capability and ambition. Their strength is not given; it is conceived, architected, built, governed and renewed. Arvington operates at this level of institutional consequence."
         tall
       />
+
+
+      {/* =========================================================
+          WHO WE ARE
+      ========================================================= */}
+      <section id="who-we-are" className="relative py-16 md:py-24 bg-white scroll-mt-24">
+        <div className="container-institutional">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-extrabold text-ink md:text-[2.4rem]">Who We Are</h2>
+            <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-gold" />
+            <p className="mt-6 text-lg leading-relaxed text-charcoal-soft">
+              Arvington Ltd. is a multidisciplinary consultancy that integrates strategy, economics,
+              artificial intelligence, data science, finance, research, technology and institutional
+              expertise to help organisations make superior decisions.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {[
+              { n: verticals.length, label: 'Consulting Verticals' },
+              { n: capabilities.length, label: 'Advisory Service Areas' },
+              { n: tiers.length, label: 'Tiers of Expertise' },
+            ].map((stat, i) => (
+              <Reveal key={stat.label} delay={i * 0.07} className="h-full">
+                <div className="h-full rounded-2xl rounded-br-[56px] bg-gold p-8 text-white">
+                  <p className="text-5xl font-extrabold text-white">{stat.n}</p>
+                  <p className="mt-2 text-lg font-bold text-white/90">{stat.label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       {/* =========================================================
@@ -151,7 +204,7 @@ export default function About() {
       ========================================================= */}
       <section
         id="vision-mission-values"
-        className="relative py-20 md:py-28 bg-[#E9E3D7] border-y border-navy/10 scroll-mt-24"
+        className="relative py-20 md:py-28 bg-pale border-y border-navy/10 scroll-mt-24"
       >
         <div className="container-institutional">
 
@@ -163,7 +216,7 @@ export default function About() {
           <div className="mt-14 grid md:grid-cols-2 gap-5">
 
             <Reveal direction="up">
-              <div className="relative bg-navy text-paper p-8 md:p-10 h-full overflow-hidden">
+              <div id="vision" className="relative scroll-mt-28 bg-navy text-paper p-8 md:p-10 h-full overflow-hidden">
 
                 <span className="absolute right-5 top-0 font-display text-[8rem] leading-none text-paper/[0.035]">
                   01
@@ -188,7 +241,7 @@ export default function About() {
 
 
             <Reveal direction="up" delay={0.1}>
-              <div className="relative bg-paper p-8 md:p-10 h-full border border-navy/10 overflow-hidden">
+              <div id="mission" className="relative scroll-mt-28 bg-paper p-8 md:p-10 h-full border border-navy/10 overflow-hidden">
 
                 <span className="absolute right-5 top-0 font-display text-[8rem] leading-none text-ink/[0.035]">
                   02
@@ -214,7 +267,7 @@ export default function About() {
 
 
           {/* VALUES */}
-          <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-4 gap-1 bg-navy/10">
+          <div id="values" className="mt-5 grid scroll-mt-28 sm:grid-cols-2 md:grid-cols-4 gap-1 bg-navy/10">
 
             {VALUES.map((value, i) => (
               <Reveal
@@ -290,7 +343,7 @@ export default function About() {
                   className={`relative min-h-[290px] p-8 md:p-9 overflow-hidden ${
                     i === 1
                       ? 'bg-navy text-paper'
-                      : 'bg-[#F0ECE3] text-ink'
+                      : 'bg-pale-dim text-ink'
                   }`}
                 >
 
@@ -401,11 +454,37 @@ export default function About() {
 
 
       {/* =========================================================
+          EVIDENCE-BASED ADVISORY
+      ========================================================= */}
+      <section id="evidence-based-advisory" className="py-20 md:py-28 bg-white scroll-mt-24">
+        <div className="container-institutional">
+          <SectionHeading
+            eyebrow="Evidence-Based Advisory"
+            title="Advice That Can Be Examined, Tested and Trusted."
+          />
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {EVIDENCE_PRINCIPLES.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.06} className="h-full">
+                <div className="h-full rounded-2xl border border-black/10 bg-white p-7 shadow-[0_2px_14px_rgba(0,0,0,0.05)]">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold text-sm font-extrabold text-white">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-5 text-lg font-extrabold text-ink">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-charcoal-soft">{p.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* =========================================================
           APPROACH
       ========================================================= */}
       <section
         id="approach"
-        className="py-20 md:py-28 bg-[#E9E3D7] scroll-mt-24"
+        className="py-20 md:py-28 bg-pale scroll-mt-24"
       >
         <div className="container-institutional">
 
@@ -501,7 +580,7 @@ export default function About() {
                 direction="up"
                 delay={i * 0.08}
               >
-                <div className="relative bg-[#F0ECE3] p-8 md:p-9 min-h-[190px] group overflow-hidden">
+                <div className="relative bg-pale-dim p-8 md:p-9 min-h-[190px] group overflow-hidden">
 
                   <span className="absolute right-5 top-2 font-display text-7xl text-ink/[0.035]">
                     0{i + 1}
@@ -565,7 +644,7 @@ export default function About() {
       ========================================================= */}
       <section
         id="csr"
-        className="py-20 md:py-28 bg-[#E9E3D7] scroll-mt-24"
+        className="py-20 md:py-28 bg-pale scroll-mt-24"
       >
         <div className="container-institutional">
 
@@ -677,7 +756,7 @@ export default function About() {
       ========================================================= */}
       <section
         id="track-record"
-        className="py-20 md:py-28 bg-[#E9E3D7] scroll-mt-24"
+        className="py-20 md:py-28 bg-pale scroll-mt-24"
       >
         <div className="container-institutional">
 
@@ -713,6 +792,19 @@ export default function About() {
                 </div>
               </Reveal>
             ))}
+
+            <Reveal direction="up" delay={0.24}>
+              <div className="h-full min-h-[230px] bg-paper p-8">
+                <p className="text-xs uppercase tracking-[0.16em] text-gold mb-4">Impact &amp; Results</p>
+                <h3 className="font-display text-xl text-ink mb-3 leading-snug">Outcomes for the institutions we advise.</h3>
+                <p className="text-sm text-charcoal-soft leading-relaxed">
+                  Verified results from completed engagements will be published here.
+                </p>
+                <Link to="/experience" className="mt-6 inline-block text-sm font-bold text-gold hover:underline underline-offset-4">
+                  See Selected Consulting Experience &rarr;
+                </Link>
+              </div>
+            </Reveal>
 
           </div>
 

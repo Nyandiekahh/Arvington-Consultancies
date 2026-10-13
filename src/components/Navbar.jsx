@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { NAV_ITEMS } from '../data/navigation'
+import { NAV_ITEMS, UTILITY_LINKS } from '../data/navigation'
 import SearchOverlay from './SearchOverlay'
 
-const TOP_LINKS = [
-  { label: 'Insights', to: '/insights' },
-  { label: 'Leadership', to: '/leadership' },
-  { label: 'Careers', to: '/careers' },
-  { label: 'Contact', to: '/contact' },
-]
+const TOP_LINKS = UTILITY_LINKS
 
 function SearchIcon({ size = 20 }) {
   return (
@@ -218,8 +213,8 @@ export default function Navbar() {
           >
             <SearchIcon />
           </button>
-          <Link to="/contact" className="btn-pill">
-            Engage Arvington
+          <Link to="/request-proposal" className="btn-pill hidden 2xl:inline-flex">
+            Request a Proposal
             <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
@@ -288,8 +283,8 @@ export default function Navbar() {
                   <Link key={l.label} to={l.to}>{l.label}</Link>
                 ))}
               </div>
-              <Link to="/contact" className="btn-pill mt-5 justify-center">
-                Engage Arvington &rarr;
+              <Link to="/request-proposal" className="btn-pill mt-5 justify-center">
+                Request a Proposal &rarr;
               </Link>
             </div>
           </motion.div>

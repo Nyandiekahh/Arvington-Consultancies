@@ -15,6 +15,9 @@ import InsightArticle from './pages/InsightArticle'
 import Sectors from './pages/Sectors'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
+import Experience from './pages/Experience'
+import Faqs from './pages/Faqs'
+import Partnerships from './pages/Partnerships'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -36,6 +39,13 @@ export default function App() {
           <Route path="/sectors" element={<Sectors />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/partnerships" element={<Partnerships />} />
+          <Route path="/request-consultancy" element={<Contact key="consultancy" preset="consultancy" />} />
+          <Route path="/request-proposal" element={<Contact key="proposal" preset="proposal" />} />
+          <Route path="/executive-consultation" element={<Contact key="executive" preset="executive" />} />
+          <Route path="/partnership-enquiry" element={<Contact key="partnership" preset="partnership" />} />
         </Routes>
       </main>
       <Footer />

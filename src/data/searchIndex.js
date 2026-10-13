@@ -21,9 +21,23 @@ NAV_ITEMS.forEach((item) => {
   entries.push({ title: item.label, subtitle: 'Page', category: 'Page', path: item.to })
   item.children?.forEach((child) => {
     entries.push({ title: child.label, subtitle: item.label, category: item.label, path: child.to })
+    child.children?.forEach((grand) => {
+      entries.push({
+        title: grand.label,
+        subtitle: `${item.label} › ${child.label}`,
+        category: item.label,
+        path: grand.to,
+      })
+    })
   })
 })
 entries.push({ title: 'Contact', subtitle: 'Page', category: 'Page', path: '/contact' })
+entries.push({ title: 'FAQs', subtitle: 'Engage Arvington', category: 'Engage Arvington', path: '/faqs' })
+entries.push({ title: 'Partnerships', subtitle: 'Engage Arvington', category: 'Engage Arvington', path: '/partnerships' })
+entries.push({ title: 'Request Consultancy', subtitle: 'Engage Arvington', category: 'Engage Arvington', path: '/request-consultancy' })
+entries.push({ title: 'Request a Proposal', subtitle: 'Engage Arvington', category: 'Engage Arvington', path: '/request-proposal' })
+entries.push({ title: 'Executive Consultation', subtitle: 'Engage Arvington', category: 'Engage Arvington', path: '/executive-consultation' })
+entries.push({ title: 'Selected Consulting Experience', subtitle: 'What We Do', category: 'What We Do', path: '/experience' })
 
 // Board of Directors
 board.forEach((member) => {
@@ -94,7 +108,14 @@ insights.forEach((insight) => {
   })
 })
 
-export const searchIndex = entries
+// De-duplicate identical title + destination pairs (nav items can repeat).
+const seen = new Set()
+export const searchIndex = entries.filter((e) => {
+  const k = `${e.title}|${e.path}`
+  if (seen.has(k)) return false
+  seen.add(k)
+  return true
+})
 
 function score(entry, query) {
   const q = query.toLowerCase()
@@ -114,7 +135,7 @@ function score(entry, query) {
 export function searchSite(query, limit = 8) {
   const q = query.trim()
   if (!q) return []
-  return entries
+  return searchIndex
     .map((entry) => ({ entry, s: score(entry, q) }))
     .filter(({ s }) => s > 0)
     .sort((a, b) => b.s - a.s)

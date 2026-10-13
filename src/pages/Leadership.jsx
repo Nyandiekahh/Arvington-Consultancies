@@ -12,13 +12,13 @@ import { verticals } from '../data/verticals'
 
 function SealBanner({ image, eyebrow, title, description, strapline }) {
   return (
-    <div className="relative overflow-hidden bg-[#0b0b09] py-20 md:py-28">
+    <div className="relative overflow-hidden bg-ink py-20 md:py-28">
       <div
         className="absolute inset-0 bg-no-repeat opacity-95"
         style={{ backgroundImage: `url(${image})`, backgroundPosition: 'right center', backgroundSize: 'contain' }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b09] via-[#0b0b09]/85 to-[#0b0b09]/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-[#0b0b09]/20" />
       <div className="container-institutional relative">
         <SectionHeading eyebrow={eyebrow} title={title} description={description} light />
         {strapline && <p className="mt-6 eyebrow text-gold/80">{strapline}</p>}
@@ -40,9 +40,9 @@ function ExecCard({ exec, index }) {
 
   return (
     <Reveal direction="up" delay={(index % 3) * 0.07}>
-      <div id={anchorId} className="border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28">
+      <div id={anchorId} className="overflow-hidden border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28">
         <button onClick={() => setExpanded((e) => !e)} className="w-full text-left p-7" aria-expanded={expanded}>
-          <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(exec.name)} alt={exec.name} />
+          <ImagePlaceholder label="Photo" ratio="aspect-[4/5] sm:aspect-square" className="-mx-7 -mt-7 mb-5 !w-[calc(100%+3.5rem)]" src={personPhoto(exec.name)} alt={exec.name} />
           <span className="font-mono text-xs text-gold">{exec.code}</span>
           <h3 className="font-display text-lg text-ink mt-2 mb-0.5">
             {exec.name}
@@ -89,48 +89,9 @@ export default function Leadership() {
       <PageHero
         eyebrow="Institutional Leadership"
         title="Stewardship. Executive Authority. Professional Leadership."
-        description="At Arvington, we architect leadership as a system of stewardship, authority and professional accountability. The Board provides independent oversight, governance and strategic direction; the C-Suite leads enterprise strategy, integration and performance; and Consulting Directors lead the twenty Verticals with defined professional authority and accountability."
+        description="At Arvington, we architect leadership as a system of stewardship, authority and professional accountability. The Executive leads enterprise strategy, integration and performance; the Directorate leads the twenty Consulting Verticals with defined professional authority and accountability; and the Board provides independent oversight, governance and strategic direction."
         tall
       />
-
-      <section id="board" className="scroll-mt-24">
-        <SealBanner
-          image="/images/leadership/board-seal.webp"
-          eyebrow={boardMandate.eyebrow}
-          title={boardMandate.title}
-          description={boardMandate.intro}
-          strapline={boardMandate.strapline}
-        />
-        <div className="py-24 md:py-28">
-          <div className="container-institutional">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {board.map((member, i) => (
-                <Reveal key={member.name + i} direction="up" delay={(i % 2) * 0.08}>
-                  <div
-                    id={`board-${slugify(member.name)}`}
-                    className="p-7 h-full border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28"
-                  >
-                    <ImagePlaceholder label="Photo" ratio="aspect-square" className="mb-5" src={personPhoto(member.name)} alt={member.name} />
-                    <h3 className="font-display text-lg text-ink">
-                      {member.name}
-                      {member.credentials ? `, ${member.credentials}` : ''}
-                    </h3>
-                    <p className="eyebrow text-gold mt-1 mb-1 tracking-normal normal-case font-normal text-charcoal-soft">
-                      {member.role}
-                    </p>
-                    {member.portfolio && (
-                      <p className="text-sm text-charcoal-soft mb-2">{member.portfolio}</p>
-                    )}
-                    {member.affiliation && (
-                      <p className="text-xs text-charcoal-soft/80 leading-relaxed">{member.affiliation}</p>
-                    )}
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="c-suite" className="scroll-mt-24">
         <SealBanner
@@ -154,7 +115,7 @@ export default function Leadership() {
       <section id="directors" className="scroll-mt-24">
         <SealBanner
           image="/images/leadership/directorate-seal.webp"
-          eyebrow="Consulting Leadership"
+          eyebrow="Directorate"
           title="Directors of the Twenty Consulting Verticals."
           description="Each vertical is led by a director responsible for the professional standards, technical quality and staffing of that specialist practice. Several verticals are being progressively activated and do not yet have a director in place. Select a director to read their full profile on the Consulting Verticals page."
         />
@@ -165,7 +126,7 @@ export default function Leadership() {
                 <Reveal key={v.id} direction="up" delay={(i % 6) * 0.04}>
                   <Link
                     to={`/consulting-verticals#vertical-${v.id}`}
-                    className={`block p-7 h-full transition-colors duration-300 ${
+                    className={`block overflow-hidden p-7 h-full transition-colors duration-300 ${
                       v.directorName
                         ? 'border border-navy/12 bg-paper hover:border-gold/60'
                         : 'border border-dashed border-navy/15 bg-paper/60'
@@ -173,8 +134,8 @@ export default function Leadership() {
                   >
                     <ImagePlaceholder
                       label={v.directorName ? 'Photo' : 'Vacant'}
-                      ratio="aspect-square"
-                      className={`mb-5 ${v.directorName ? '' : 'opacity-60'}`}
+                      ratio="aspect-[4/5] sm:aspect-square"
+                      className={`-mx-7 -mt-7 mb-5 !w-[calc(100%+3.5rem)] ${v.directorName ? '' : 'opacity-60'}`}
                       src={personPhoto(v.directorName)}
                       alt={v.directorName}
                     />
@@ -186,6 +147,45 @@ export default function Leadership() {
                       {v.director}
                     </p>
                   </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="board" className="scroll-mt-24">
+        <SealBanner
+          image="/images/leadership/board-seal.webp"
+          eyebrow={boardMandate.eyebrow}
+          title={boardMandate.title}
+          description={boardMandate.intro}
+          strapline={boardMandate.strapline}
+        />
+        <div className="py-24 md:py-28">
+          <div className="container-institutional">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {board.map((member, i) => (
+                <Reveal key={member.name + i} direction="up" delay={(i % 2) * 0.08}>
+                  <div
+                    id={`board-${slugify(member.name)}`}
+                    className="overflow-hidden p-7 h-full border border-navy/12 bg-paper hover:border-gold/60 transition-colors duration-300 scroll-mt-28"
+                  >
+                    <ImagePlaceholder label="Photo" ratio="aspect-[4/5] sm:aspect-square" className="-mx-7 -mt-7 mb-5 !w-[calc(100%+3.5rem)]" src={personPhoto(member.name)} alt={member.name} />
+                    <h3 className="font-display text-lg text-ink">
+                      {member.name}
+                      {member.credentials ? `, ${member.credentials}` : ''}
+                    </h3>
+                    <p className="eyebrow text-gold mt-1 mb-1 tracking-normal normal-case font-normal text-charcoal-soft">
+                      {member.role}
+                    </p>
+                    {member.portfolio && (
+                      <p className="text-sm text-charcoal-soft mb-2">{member.portfolio}</p>
+                    )}
+                    {member.affiliation && (
+                      <p className="text-xs text-charcoal-soft/80 leading-relaxed">{member.affiliation}</p>
+                    )}
+                  </div>
                 </Reveal>
               ))}
             </div>

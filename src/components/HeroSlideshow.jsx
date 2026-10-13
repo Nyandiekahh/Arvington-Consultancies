@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import useReducedMotion from '../hooks/useReducedMotion'
 
@@ -14,6 +14,8 @@ export default function HeroSlideshow({
   onSlideChange,
 }) {
   const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const rootRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
 
   const goTo = useCallback(
@@ -31,17 +33,61 @@ export default function HeroSlideshow({
   }, [index, images, onSlideChange])
 
   useEffect(() => {
-    if (prefersReducedMotion || !images || images.length <= 1) return
+    if (prefersReducedMotion || paused || !images || images.length <= 1) return
     const id = setInterval(() => {
       setIndex((current) => (current + 1) % images.length)
     }, interval)
     return () => clearInterval(id)
-  }, [images, interval, prefersReducedMotion])
+  }, [images, interval, prefersReducedMotion, paused])
+
+  // Pause on hover/focus and support touch swipe. Listeners go on the hero
+  // section (this component's parent) because the headline and buttons sit on
+  // top of the slideshow layer and would otherwise swallow the events.
+  const count = images ? images.length : 0
+  useEffect(() => {
+    const host = rootRef.current?.parentElement
+    if (!host || count <= 1) return
+    let startX = null
+    let startY = null
+    const pause = () => setPaused(true)
+    const resume = () => setPaused(false)
+    const onStart = (e) => {
+      startX = e.touches[0].clientX
+      startY = e.touches[0].clientY
+      setPaused(true)
+    }
+    const onEnd = (e) => {
+      if (startX !== null) {
+        const dx = e.changedTouches[0].clientX - startX
+        const dy = e.changedTouches[0].clientY - startY
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          setIndex((cur) => (cur + (dx < 0 ? 1 : -1) + count) % count)
+        }
+      }
+      startX = null
+      startY = null
+      setPaused(false)
+    }
+    host.addEventListener('mouseenter', pause)
+    host.addEventListener('mouseleave', resume)
+    host.addEventListener('focusin', pause)
+    host.addEventListener('focusout', resume)
+    host.addEventListener('touchstart', onStart, { passive: true })
+    host.addEventListener('touchend', onEnd, { passive: true })
+    return () => {
+      host.removeEventListener('mouseenter', pause)
+      host.removeEventListener('mouseleave', resume)
+      host.removeEventListener('focusin', pause)
+      host.removeEventListener('focusout', resume)
+      host.removeEventListener('touchstart', onStart)
+      host.removeEventListener('touchend', onEnd)
+    }
+  }, [count])
 
   if (!images || images.length === 0) return null
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div ref={rootRef} className="absolute inset-0 overflow-hidden">
       <AnimatePresence mode="sync">
         <motion.div
           key={images[index].src}

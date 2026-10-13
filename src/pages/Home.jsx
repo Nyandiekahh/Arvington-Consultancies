@@ -9,6 +9,8 @@ import { capabilities } from '../data/capabilities'
 import { tiers } from '../data/verticals'
 import { sectors } from '../data/sectors'
 import { insights } from '../data/insights'
+import { ENGAGE_LINKS } from '../data/navigation'
+import { partners } from '../data/partners'
 
 const HERO_SLIDES = [
   {
@@ -358,6 +360,54 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* =========================================================
+          ENGAGE ARVINGTON — quick links (KEBS "Online Services")
+      ========================================================= */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="container-institutional">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-extrabold text-ink md:text-[2.4rem]">Engage Arvington</h2>
+            <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-gold" />
+            <p className="mt-5 text-lg leading-relaxed text-charcoal-soft">
+              Start a conversation, request a proposal or find answers &mdash; all in one place.
+            </p>
+          </Reveal>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ENGAGE_LINKS.map((l, i) => (
+              <Reveal key={l.label} delay={(i % 4) * 0.05} className="h-full">
+                <Link
+                  to={l.to}
+                  className="group flex h-full flex-col rounded-2xl border border-black/10 bg-white p-6 shadow-[0_2px_14px_rgba(0,0,0,0.05)] transition-colors duration-200 hover:border-gold hover:bg-gold"
+                >
+                  <h3 className="text-lg font-extrabold text-ink transition-colors group-hover:text-white">{l.label}</h3>
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-charcoal-soft transition-colors group-hover:text-white/85">{l.text}</p>
+                  <span className="mt-auto pt-5 text-sm font-bold text-gold transition-colors group-hover:text-white">
+                    Open &rarr;
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {partners.length > 0 && (
+        <section className="bg-pale py-14">
+          <div className="container-institutional">
+            <h2 className="text-center text-2xl font-extrabold text-ink">Our Partners</h2>
+            <div className="mt-8 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-6">
+              {partners.map((p) =>
+                p.logo ? (
+                  <img key={p.name} src={p.logo} alt={p.name} loading="lazy" className="mx-auto max-h-14 w-auto object-contain" />
+                ) : (
+                  <span key={p.name} className="text-center font-bold text-charcoal-soft">{p.name}</span>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* =========================================================
           FINAL CTA — blue band
