@@ -104,7 +104,7 @@ export default function Navbar() {
               ARVINGTON<span className="text-gold">.</span>
             </span>
             <span className="hidden sm:block text-[0.68rem] font-semibold text-gold tracking-wide">
-              Strengthening Institutions Through Superior Decisions
+              Consultancy | Advisory | Analytics | Research
             </span>
           </span>
         </Link>

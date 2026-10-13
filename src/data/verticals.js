@@ -406,16 +406,11 @@ export const verticals = [
     tier: 'tier-2',
     name: 'GIS, Remote Sensing & Geospatial Intelligence',
     director: 'Director, GIS, Remote Sensing & Geospatial Intelligence',
-    directorName: 'Eric Mugo Njuguna',
-    directorCredentials: 'BSc',
-    directorTagline: 'Geospatial Intelligence | GIS | Remote Sensing | Spatial Analytics | Data Scientist',
-    directorMantra: 'Transforming spatial data and earth observation into intelligence for better decisions.',
-    directorBio: [
-      `Director of the GIS, Remote Sensing & Geospatial Intelligence Vertical at Arvington Ltd, providing leadership for the vertical’s geospatial strategy, technical direction, multidisciplinary capabilities and delivery. He leads the application of GIS, remote sensing, spatial analytics, geospatial intelligence, machine learning and data science to complex institutional, environmental, commercial and development challenges.`,
-      `His professional formation spans data science, geospatial analytics, spatial modelling, remote sensing, machine learning, statistical analysis and data visualisation, with applications across environmental intelligence, climate, agriculture, land and natural resources, infrastructure, disaster risk, urban systems and spatial decision support.`,
-      `Eric holds a BSc in Data Science & Analytics from Jomo Kenyatta University of Agriculture and Technology and specialised training in Geographic Information Systems from UNDP.`,
-      `His leadership is grounded in spatial intelligence, analytical rigour and multidisciplinary integration, connecting geospatial evidence to strategy, research, planning, operations, investment and consequential institutional decisions.`,
-    ],
+    directorName: null,
+    directorCredentials: null,
+    directorTagline: 'Geospatial Intelligence | GIS | Remote Sensing | Spatial Analytics',
+    directorMantra: null,
+    directorBio: [],
     directorQuote:
       'Every institution operates somewhere, and place shapes what is possible. Our mandate is to convert the geography of an institution’s challenge into intelligence that can inform action. We combine geospatial science, earth observation and spatial analytics to reveal patterns, risks and opportunities that conventional analysis can overlook, giving decision-makers a clearer understanding of the physical systems within which strategy must ultimately perform.',
     engagementModels: [

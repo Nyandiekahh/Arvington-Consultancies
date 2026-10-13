@@ -18,7 +18,7 @@ export const insights = [
   {
     id: 'decision-quality-institutions',
     author: 'Seth Kipsang',
-    authorRole: 'Founder & Chief Executive Officer',
+    authorRole: 'Chief Executive Officer',
     authorCategory: 'C-Suite',
     vertical: 'Strategy, Leadership & Management',
     publicationType: 'Executive Perspective',
@@ -179,8 +179,8 @@ export const editorialBoard = [
   {
     role: 'Editor-in-Chief',
     description: 'Overall intellectual and editorial direction.',
-    name: 'Seth Kipsang',
-    position: 'Founder & Chief Executive Officer, Arvington Ltd',
+    name: 'Dr. John Kiche',
+    position: 'Chief Operating Officer, Arvington Ltd',
   },
   {
     role: 'Executive Editors',

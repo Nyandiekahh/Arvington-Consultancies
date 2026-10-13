@@ -40,7 +40,6 @@ Consulting Vertical Directors:
 - augustine-wekesa-masinde.jpg
 - bilha-wetende.jpg
 - **einstein-nyandieka-mokua.jpg** ← your own photo
-- eric-mugo-njuguna.jpg
 - mildred-chepkwemoi.jpg
 
 Client testimonials (Home page):
