@@ -32,6 +32,15 @@ const engagementTypes = [
   'Partnership Enquiry',
 ]
 
+// Official mailboxes, in the order they appear on the page.
+const EMAIL_CONTACTS = [
+  { address: 'executive@arvington.com', purpose: 'C-Suite / Executive communication' },
+  { address: 'board@arvington.com', purpose: 'Board and governance matters' },
+  { address: 'directorate@arvington.com', purpose: 'Directorate / Vertical-level communication and coordination' },
+  { address: 'advisory@arvington.com', purpose: 'General advisory / consultancy and institutional matters' },
+  { address: 'engage@arvington.com', purpose: 'External engagement, inquiries and general communication' },
+]
+
 const DEFAULT_DESCRIPTION =
   'Whether the challenge concerns strategy, transformation, investment, analytics, institutional performance, research, technology or a complex multidisciplinary problem, Arvington can assemble the appropriate expertise. Our 20 Consulting Verticals provide specialist depth across the disciplines required to address consequential institutional, commercial, technical and strategic questions.'
 
@@ -249,6 +258,12 @@ ${form.howHeard || 'Not specified'}
               <div>
                 <p className="eyebrow text-gold mb-3">Correspondence</p>
                 <p className="text-ink text-lg">0719729569</p>
+                <a
+                  href="mailto:engage@arvington.com"
+                  className="mt-2 inline-block text-lg text-ink hover:text-gold transition-colors duration-200"
+                >
+                  engage@arvington.com
+                </a>
               </div>
 
               <div>
@@ -273,6 +288,32 @@ ${form.howHeard || 'Not specified'}
           </div>
 
           <div className="lg:col-span-8">
+            <div id="email" className="mb-16 scroll-mt-28">
+              <p className="eyebrow text-gold mb-3">Email Directory</p>
+              <h2 className="font-display text-2xl text-ink mb-3">Write to the Right Office</h2>
+              <p className="text-charcoal-soft leading-relaxed mb-6">
+                Send your message directly to the office best placed to respond. If you are
+                unsure, write to engage@arvington.com and we will route it for you.
+              </p>
+              <ul className="border border-navy/15 divide-y divide-navy/10">
+                {EMAIL_CONTACTS.map((c) => (
+                  <li key={c.address}>
+                    <a
+                      href={`mailto:${c.address}`}
+                      className="group flex flex-col gap-1 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-6 hover:bg-pale/40 transition-colors duration-300"
+                    >
+                      <span className="font-display text-lg text-ink break-all group-hover:text-gold transition-colors duration-300">
+                        {c.address}
+                      </span>
+                      <span className="text-sm text-charcoal-soft sm:max-w-[55%] sm:text-right">
+                        {c.purpose}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-6 mb-16">
               <a
                 id="whatsapp"

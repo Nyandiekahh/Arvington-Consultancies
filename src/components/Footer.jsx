@@ -17,6 +17,14 @@ const quickLinks = [
   { label: 'Contact', to: '/contact' },
 ]
 
+const emailContacts = [
+  { address: 'executive@arvington.com', purpose: 'C-Suite / Executive communication' },
+  { address: 'board@arvington.com', purpose: 'Board and governance matters' },
+  { address: 'directorate@arvington.com', purpose: 'Directorate / Vertical-level communication' },
+  { address: 'advisory@arvington.com', purpose: 'General advisory / consultancy matters' },
+  { address: 'engage@arvington.com', purpose: 'External engagement and general inquiries' },
+]
+
 const socialLinks = [
   'LinkedIn',
   'X (Twitter)',
@@ -110,12 +118,15 @@ export default function Footer() {
           {/* Contact */}
           <div className="lg:col-span-3">
             <Heading>Contact Us</Heading>
-            <ul className="flex flex-col gap-3 text-white/80">
-              <li>
-                <a href="mailto:engage@arvington.com" className="transition-colors duration-200 hover:text-sky">
-                  engage@arvington.com
-                </a>
-              </li>
+            <ul className="flex flex-col gap-3.5 text-white/80">
+              {emailContacts.map((c) => (
+                <li key={c.address}>
+                  <a href={`mailto:${c.address}`} className="break-all transition-colors duration-200 hover:text-sky">
+                    {c.address}
+                  </a>
+                  <span className="block text-xs leading-snug text-white/50">{c.purpose}</span>
+                </li>
+              ))}
               <li>Nairobi &middot; Global Advisory Network</li>
             </ul>
             <Link to="/contact" className="btn-pill btn-pill--light mt-6">
